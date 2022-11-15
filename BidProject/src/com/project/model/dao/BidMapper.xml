@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BidMapper">
+
+	<resultMap type="com.project.model.dto.MemberDTO" id="loginResultMap">
+	
+		<id property = "userID" column = "USER_ID"/>
+		<id property = "userPWD" column = "USER_PWD"/>
+		
+		<result property = "userName" column = "USER_NAME"/>
+		<result property = "userEmail" column = "USER_EMAIL"/>
+		<result property = "userAge" column = "USER_AGE"/>
+		<result property = "userGender" column = "USER_GENDER"/>
+		<result property = "userEmail" column = "USER_EMAIL"/>
+		<result property = "userAddress" column = "USER_ADDRESS"/>
+		<result property = "userPhone" column = "USER_PHONE"/>
+		<result property = "memberStatus" column = "MEMBER_STATUS"/>
+		<result property = "mcStatus" column = "MC_STATUS"/>
+		<result property = "enrollDate" column = "ENROLL_DATE"/>
+		<result property = "adminStatus" column = "ADMIN_STATUS"/>
+	
+	</resultMap>
+	
+	<select id= "login" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
+
+		SELECT 
+		*
+		FROM BID_USER
+		WHERE USER_ID = #{userID}
+	</select>
+
+
+
+
+
+</mapper>
