@@ -2,6 +2,7 @@ package common;
 
 import java.util.List;
 
+import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
 public class PrintResult {
@@ -48,6 +49,39 @@ public class PrintResult {
 		
 	}
 	
-	
+
+	public void printProductList(List<BidProduct> productList) {
+
+		for (BidProduct product : productList) {
+			System.out.println(product);
+
+		}
+
+	}
+
+	public void printErrorMessage1(String errorCode) {
+
+		String errorMessage = "";
+		switch (errorCode) {
+		case "buyList":
+			errorMessage = "구매 물품 목록 조회에 실패하셨습니다.";
+			break;
+
+		}
+
+		System.out.println(errorMessage);
+
+	}
+
+	public void printSuccessMessage1(String successCode) {
+
+		String successMessage = "";
+		switch (successCode) {
+		case "insert":
+			successMessage = "구매가  완료되었습니다.";
+			break;
+
+		}
+	}
 	
 }

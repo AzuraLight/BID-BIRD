@@ -1,25 +1,27 @@
 package com.project.controller;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 import com.project.model.dto.MemberDTO;
 import com.project.service.BidService;
-
 import common.PrintResult;
 
 public class BidController {
 
 	private MemberDTO member;
 	private static Scanner sc = new Scanner(System.in);
-	private final PrintResult printResult;
+	private static PrintResult printResult;
 	private final BidService bidService;
-
+  
+	
 	public BidController() {
 		printResult = new PrintResult();
 		bidService = new BidService();
+		
 	}
 
 	public void login(Map<String, String> parameter) {
@@ -60,7 +62,7 @@ public class BidController {
 		no = sc.nextInt();
 		switch (no) {
 //		case 1: sellProduct(); break;
-//		case 2: buyProduct(); break;
+		case 2: buyProduct(); break;
 //		case 3: updateMember(); break;
 		default:
 			break;
@@ -246,5 +248,207 @@ public class BidController {
 		// TODO Auto-generated method stub
 
 	}
+	public static void buyProduct() {
+
+		int no = 0;
+		BidService bidService = new BidService();
+
+		do {
+		System.out.println("=======물품 구매 ======");
+		System.out.println("1.물품 조회");
+		System.out.println("2.물품 구매");
+		System.out.println("3.구매 물품 확인");
+		System.out.println("4.구매 물품 취소");
+		System.out.println("9.이전 메뉴로");
+		System.out.println();
+
+		System.out.print("메뉴 선택 : ");
+		try {
+	         no = sc.nextInt();
+	      } catch (InputMismatchException e) {
+	         System.out.println("잘못된 값을 입력하셨습니다.");
+	         System.out.println("정수를 입력하세요.");
+	         sc = new Scanner(System.in);
+	      }
+		sc.nextLine();
+
+		switch (no) {
+		case 1:
+		productSearch();
+		break;
+		case 2:
+		purchase();
+		break;
+		case 3:
+		purchaseConfirm();
+		break;
+		case 4:
+		cancelPurchase();
+		break;
+		case 9:
+		System.out.println("이전메뉴로 돌아갑니다.");
+		break;
+		}
+		} while (true);
+
+	}
+	
+	private static void cancelPurchase() {
+		int no =0;
+		BidService bidService = new BidService();
+		do {
+		System.out.println("=========== 구매 물품 취소 ============");
+		System.out.println("1.구매 했던 목록 조회 ");
+		System.out.println("2.구매 취소 ");
+		System.out.println("9. 이전 메뉴로");
+		System.out.print("메뉴 번호를 입력하세요 : ");
+		try {
+	         no = sc.nextInt();
+	      } catch (InputMismatchException e) {
+	         System.out.println("잘못된 값을 입력하셨습니다.");
+	         System.out.println("정수를 입력하세요.");
+	         sc = new Scanner(System.in);
+	      }
+		switch(no) {
+		case 1 : bidService.confirm(); break;
+		case 2 : bidService.cancel(inputCancel()); break;
+		case 9 : return;
+		}
+		}while(true);
+	}
+	
+
+	private static Map<String, Object> inputCancel() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("취소할 상품 이름을 입력하세요 :");
+		String name = sc.nextLine();
+		System.out.println("취소 하시려면 N을 입력하세요 :");
+         String productableStatus = sc.nextLine().toUpperCase();
+		
+		Map<String, Object> inputCancel = new HashMap<>();
+		inputCancel.put("name", name);
+		inputCancel.put("productableStatus", productableStatus);
+		
+		return inputCancel;
+	}
+
+	private static void purchaseConfirm() {
+		int no =0;
+		BidService bidService = new BidService();
+		do {
+		System.out.println("=========== 구매 물품 확인 ============");
+		System.out.println("1.구매 했던 목록 조회 ");
+		
+		System.out.println("9. 이전 메뉴로");
+		System.out.print("메뉴 번호를 입력하세요 : ");
+		try {
+	         no = sc.nextInt();
+	      } catch (InputMismatchException e) {
+	         System.out.println("잘못된 값을 입력하셨습니다.");
+	         System.out.println("정수를 입력하세요.");
+	         sc = new Scanner(System.in);
+	      }
+		
+		switch(no) {
+		case 1 : bidService.confirm(); break;
+		
+		case 9 : return;
+		}
+		}while(true);
+	}
+
+	private static void purchase() {
+		int no = 0;
+		BidService bidService = new BidService();
+		do {
+		System.out.println("=========== 물품 구매 메뉴 ============");
+		System.out.println("1.전체 목록 조회 ");
+		System.out.println("2.구매 하기 ");
+		System.out.println("9. 이전 메뉴로");
+		System.out.print("메뉴 번호를 입력하세요 : ");
+		try {
+	         no = sc.nextInt();
+	      } catch (InputMismatchException e) {
+	         System.out.println("잘못된 값을 입력하셨습니다.");
+	         System.out.println("정수를 입력하세요.");
+	         sc = new Scanner(System.in);
+	      }
+		
+		switch(no) {
+		case 1 : bidService.searchAll(); break;
+		case 2 : bidService.productPurchase(inputChangeInfo()); purchase();
+		case 9 : return;
+		}
+		}while(true);
+		
+	}
+		
+	
+
+	private static void productSearch() {
+		int no = 0;
+		BidService bidService = new BidService();
+		do {
+		System.out.println("=========== 물품 조회 메뉴 ============");
+		System.out.println("1. 전체 조회");
+		System.out.println("2. 이름 또는 사이즈로 검색");
+		System.out.println("9. 이전 메뉴로");
+		System.out.print("메뉴 번호를 입력하세요 : ");
+		try {
+	         no = sc.nextInt();
+	      } catch (InputMismatchException e) {
+	         System.out.println("잘못된 값을 입력하셨습니다.");
+	         System.out.println("정수를 입력하세요.");
+	         sc = new Scanner(System.in);
+	      }
+		
+		switch(no) {
+		case 1 : bidService.searchAll(); break;
+		case 2 : bidService.searchByNameOrSize(inputSearchMap()); break;
+		case 9 : return;
+		}
+		}while(true);
+		
+	}
+
+	private static Map<String, Object>inputSearchMap() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("검색할 조건을 입력하세요(name or size ) : ");
+		String condition = sc.nextLine().toLowerCase();
+		
+		Map<String, Object> criteria = new HashMap<>();
+		
+		if("name".equals(condition)) {
+		System.out.println("검색할 상품명을 입력하세요 : ");
+		String nameValue = sc.nextLine();
+		
+		criteria.put("nameValue", nameValue);
+		
+		}else if("size".equals(condition)){ 
+		System.out.println("검색할 사이즈를 입력하세요");
+		char sizeValue = sc.nextLine().toUpperCase().charAt(0);
+		criteria.put("sizeValue", sizeValue);
+		
+		
+		
+		}
+		
+		return criteria;
+	}
+
+	private static Map<String, Object> inputChangeInfo() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("구매할 메뉴 이름을 입력하세요 :");
+		String name = sc.nextLine();
+		System.out.print("정말 구매 하시겠습니까(Y/N) :");
+		String productableStatus = sc.nextLine().toUpperCase();
+		
+		Map<String, Object> changeInfo = new HashMap<>();
+		
+		changeInfo.put("name", name);
+		changeInfo.put("productableStatus", productableStatus);
+		return changeInfo;
+	}
+	
 
 }

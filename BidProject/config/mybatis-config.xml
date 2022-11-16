@@ -23,7 +23,8 @@
 	</environments>
 	
 	<mappers>
-		<!--  package name ="com.project"/>-->
+		<!--  <package name ="com.project"/>-->
 		<mapper resource="com/project/model/dao/BidMapper.xml"/>
+		<!-- <mapper resource="com/project/model/dao/BidBuyMapper.xml"/>-->
 	</mappers>
 </configuration>

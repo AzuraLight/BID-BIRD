@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.project.model.dao.BidDAO;
+import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
 /**
@@ -90,5 +91,84 @@ public class BidService {
 		sqlSession.close();
 		
 		return memberList;
+	}
+	
+	   public List<BidProduct> searchAll() {
+		SqlSession sqlSession = getSqlSession();
+
+		List<BidProduct> bidList = bidDAO.searchAll(sqlSession);
+
+		if(bidList != null) {
+		    System.out.println(bidList + "검색되었습니다");
+			
+		}
+
+		sqlSession.close();
+		return bidList;
+
+	}
+
+	public void searchByNameOrSize(Map<String, Object> criteria) {
+		SqlSession sqlSession = getSqlSession();
+
+		
+		List<BidProduct> bidList = bidDAO.searchByNameOrSize(sqlSession, criteria);
+		
+		if (bidList != null && bidList.size() > 0) {
+			for (BidProduct menu : bidList) {
+				System.out.println(menu + "검색되었습니다");
+			}
+		} else {
+			System.out.println("검색결과가 존재하지 않습니다");
+		}
+
+		sqlSession.close();
+
+	}
+
+	public void productPurchase(Map<String, Object> changeInfo) {
+		SqlSession sqlSession = getSqlSession();
+		
+		
+		List<BidProduct> result = bidDAO.productPurchase(sqlSession, changeInfo);
+
+		if (result != null ) {
+			
+			System.out.println("구매에 성공하셨습니다.");
+			sqlSession.commit();
+
+		} else {
+			System.out.println("다시 입력하세요");
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+	}
+
+	public void confirm() {
+		SqlSession sqlSession = getSqlSession();
+		List<BidProduct> bidList = bidDAO.confirm(sqlSession);
+		System.out.println(bidList + "조회 되었습니다");
+		
+		sqlSession.close();
+		
+
+		
+	}
+
+	public void cancel(Map<String, Object> inputCancel) {
+		SqlSession sqlSession = getSqlSession();
+		List<BidProduct> bidList = bidDAO.cancel(sqlSession,inputCancel);
+		
+		List<BidProduct> result = bidDAO.productPurchase(sqlSession, inputCancel);
+		
+		if (result != null) {
+			System.out.println("환불 되었습니다");
+			sqlSession.commit();
+
+		} else {
+			System.out.println("다시 입력하세요");
+			sqlSession.rollback();
+		}
+		sqlSession.close();
 	}
 }
