@@ -45,13 +45,16 @@ public class BidDAO {
 	}
 	
 
-	public int updateMemebr(SqlSession sqlSession, MemberDTO member) {
-		return sqlSession.update("BidMapper.updateMember", member);	
-		}
+	public int updateMember(SqlSession sqlSession, MemberDTO member) {
+		return sqlSession.update("BidMapper.updateMemebr", member);	
 
+	}
+	
 	public int deleteMemberMe(SqlSession sqlSession, String userID) {
 		return sqlSession.delete("BidMapper.deleteMemberMe", userID);
 
 	}
+
+	
 
 }

@@ -92,8 +92,7 @@ public class BidController {
 			printResult.printErrorMessage("delete");
 		}
 
-			
-}
+	}
 
 	private static Map<String, String> inputPWD() {
 		System.out.println("아이디를 다시 입력해주세요: ");
@@ -106,14 +105,15 @@ public class BidController {
 		return parameter;
 	}
 
-	private void updateMember(Map<String, String> parameter) {
+	public void updateMember(Map<String, String> parameter) {
 		String userID = parameter.get("userID");
 		String userName = parameter.get("userName");
 		String userPWD = parameter.get("userPWD");
 		String userEmail = parameter.get("userEmail");
 		String userAddress = parameter.get("userAddress");
 		String userPhone = parameter.get("userPhone");
-
+		
+		
 		MemberDTO member = new MemberDTO();
 		member.setUserID(userID);
 		member.setUserName(userName);
@@ -127,37 +127,34 @@ public class BidController {
 		} else {
 			printResult.printErrorMessage("update");
 		}
-
+				
 	}
 
-	private Map<String, String> updateInfo() {
-		System.out.print("수정하실 아이디를 확인해주세요 : ");
-		String userID = sc.next();
-
-		System.out.print("변경할 이름를 입력해주세요: ");
-		String userName = sc.next();
-
-		System.out.print("변경할 비밀번호를 입력해주세요: ");
-		String userPWD = sc.next();
-
-		System.out.print("변경할 이메일를 입력해주세요: ");
-		String userEmail = sc.next();
-
-		System.out.print("변경할 전화번호를 입력해주세요: ");
-		String userPhone = sc.next();
-
-		System.out.print("변경할 주소를 입력해주세요: ");
-		String userAddress = sc.next();
+	public Map<String, String> updateInfo() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("수정할 아이디를 입력하세요 : ");
+		String userID = sc.nextLine();
+		System.out.println("변경할 이름를 입력해주세요:");
+		String userName = sc.nextLine();
+		System.out.println("변경할 비밀번호를 입력해주세요: ");
+		String userPWD = sc.nextLine();
+		System.out.println("변경할 이메일를 입력해주세요: ");
+		String userEmail = sc.nextLine();
+		System.out.println("변경할 전화번호를 입력해주세요: ");
+		String userAddress = sc.nextLine();
+		System.out.println("변경할 주소를 입력해주세요: ");
+		String userPhone = sc.nextLine();
 
 		Map<String, String> parameter = new HashMap<>();
 		parameter.put("userID", userID);
 		parameter.put("userName", userName);
 		parameter.put("userPWD", userPWD);
 		parameter.put("userEmail", userEmail);
-		parameter.put("userPhone", userPhone);
 		parameter.put("userAddress", userAddress);
+		parameter.put("userPhone", userPhone);
 
 		return parameter;
+
 	}
 
 	private void moveto() {
@@ -397,6 +394,5 @@ public class BidController {
 		}
 
 	}
-
 
 }

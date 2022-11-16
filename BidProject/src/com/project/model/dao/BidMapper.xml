@@ -15,7 +15,6 @@
 		<result property = "userAddress" column = "USER_ADDRESS"/>
 		<result property = "userPhone" column = "USER_PHONE"/>
 		<result property = "memberStatus" column = "MEMBER_STATUS"/>
-		<result property = "mcStatus" column = "MC_STATUS"/>
 		<result property = "enrollDate" column = "ENROLL_DATE"/>
 		<result property = "adminStatus" column = "ADMIN_STATUS"/>
 	

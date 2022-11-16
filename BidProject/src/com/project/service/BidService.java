@@ -113,7 +113,7 @@ public class BidService {
 	public boolean updateMember(MemberDTO member) {
 		SqlSession sqlSession = getSqlSession();
 
-		int result = bidDAO.updateMemebr(sqlSession, member);
+		int result = bidDAO.updateMember(sqlSession, member);
 
 		if (result > 0) {
 			sqlSession.commit();
