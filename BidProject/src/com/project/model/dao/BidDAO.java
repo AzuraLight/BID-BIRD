@@ -39,6 +39,13 @@ public class BidDAO {
 		return sqlSession.selectList("BidMapper.selectAllMember");
 		
 	}
+
+	public int updateMember(SqlSession sqlSession, MemberDTO member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("BidMapper.updateMember", member);
+				
+	}
+
 	
 
 

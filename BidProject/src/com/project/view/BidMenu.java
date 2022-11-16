@@ -1,6 +1,7 @@
 package com.project.view;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -21,8 +22,9 @@ public class BidMenu {
 	private BidController bidController = new BidController();
 
 	public void displayMainmenu() {
-
-		int choice;
+		int choice = 0;
+		
+		
 
 		do {
 			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
@@ -42,17 +44,23 @@ public class BidMenu {
 			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀1. 로   그   인");
 			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀2. 신규 회원 가입");
 			System.out.print("\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀⠀번호를 입력하세요 : ");
-
+			try {
 			choice = sc.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("잘못된 값을 입력하셨습니다.");
+				System.out.println("정수를 입력하세요.");
+				sc = new Scanner(System.in);
+			}
 
 			switch (choice) {
 				case 1: bidController.login(inputMember()); break;
 				case 2: bidController.signUp(); break;
 			default:
-				System.out.println("번호를 잘못입력하였습니다.");
+				
 			}
+			
 		} while (true);
-
+		
 	}
 
 	private static Map<String, String> inputMember() {
@@ -62,10 +70,10 @@ public class BidMenu {
 		}
 		
 		System.out.print("아이디를 입력하세요. : ");
-		String userID = sc.next();
+		String userID = sc.next().toLowerCase();
 		
 		System.out.print("비밀번호를 입력하세요. : ");
-		String userPWD = sc.next();
+		String userPWD = sc.next().toLowerCase();
 		
 		Map<String, String> parameter = new HashMap<>();
 		parameter.put("userID", userID);
