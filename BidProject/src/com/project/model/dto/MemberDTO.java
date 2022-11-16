@@ -195,11 +195,18 @@ public class MemberDTO {
 
 
 
+//	@Override
+//	public String toString() {
+//		return "| 회원 아이디 : " + userID + " | 회원 비밀번호 : " + userPWD + " | 회원명 : " + userName + " | 회원 나이 : "
+//				+ userAge + " | 회원 성별 : " + userGender + " | 회원 이메일 : " + userEmail + " | 회원 주소 : "+ userAddress + " | 회원 휴대폰 번호 : " + userPhone
+//				+ " | 회원 가입 상태 : " + memberStatus + " | 쿠폰 상태 : " + mcStatus + " | 가입일 : " + enrollDate + "|";
+//	}	
+	
 	@Override
 	public String toString() {
-		return "MemberDTO [userID=" + userID + ", userPWD=" + userPWD + ", userName=" + userName + ", userAge="
-				+ userAge + ", userGender=" + userGender + ", userEmail=" + userEmail + ", userPhone=" + userPhone
-				+ ", memberStatus=" + memberStatus + ", mcStatus=" + mcStatus + ", enrollDate=" + enrollDate + "]";
+		return "| 회원 아이디 : " + userID + " | 회원명 : " + userName + " | 회원 나이 : "
+				+ userAge + " | 회원 성별 : " + userGender + " | 회원 이메일 : " + userEmail + " | 회원 주소 : "+ userAddress + " | 회원 휴대폰 번호 : " + userPhone
+				+ " | 회원 가입 상태 : " + memberStatus + " | 가입일 : " + enrollDate + "|";
 	}	
 	
 }

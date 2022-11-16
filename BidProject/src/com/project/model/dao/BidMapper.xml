@@ -23,14 +23,52 @@
 	
 	<select id= "login" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
 
-		SELECT 
+		SELECT DISTINCT
 		*
 		FROM BID_USER
 		WHERE USER_ID = #{userID}
 	</select>
+	
+	<select id= "findMemberID" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
+
+			SELECT DISTINCT
+			*
+			FROM BID_USER
+			WHERE USER_ID = #{userID}
+	</select>
+	
+	<select id= "findMembreName" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
+
+			SELECT DISTINCT
+			*
+			FROM BID_USER
+			WHERE USER_NAME LIKE #{userName}
+	</select>
+	
+	<select id= "findMemberEmail" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
+
+			SELECT DISTINCT
+			*
+			FROM BID_USER
+			WHERE USER_EMAIL = #{userEmail}
+	</select>
 
 
+	<delete id= "deleteMember" parameterType="com.project.model.dto.MemberDTO">
 
+			DELETE
+			FROM BID_USER
+			WHERE USER_ID = #{userID}
+	</delete>
+
+	<select id= "selectAllMember" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
+
+		SELECT DISTINCT
+		*
+		FROM BID_USER
+		WHERE USER_ID NOT IN ('admin')
+
+	</select>
 
 
 </mapper>
