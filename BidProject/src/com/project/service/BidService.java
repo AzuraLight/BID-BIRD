@@ -39,4 +39,56 @@ public class BidService {
 		return null;
 		
 	}
+
+	public MemberDTO findMemberID(String userID) {
+		
+		SqlSession sqlSession = getSqlSession();
+		
+		MemberDTO member = bidDAO.findMemberID(sqlSession, userID);
+		
+		sqlSession.close();
+		
+		return member;
+	}
+
+	public MemberDTO findMembreName(String userName) {
+		SqlSession sqlSession = getSqlSession();
+		
+		MemberDTO member = bidDAO.findMembreName(sqlSession, userName);
+		
+		sqlSession.close();
+		
+		return member;
+	}
+
+	public MemberDTO findMemberEmail(String userEmail) {
+		SqlSession sqlSession = getSqlSession();
+		
+		MemberDTO member = bidDAO.findMemberEmail(sqlSession, userEmail);
+		
+		sqlSession.close();
+		
+		return member;
+	}
+
+	public MemberDTO deleteMember(String userID) {
+		SqlSession sqlSession = getSqlSession();
+		
+		MemberDTO member = bidDAO.deleteMember(sqlSession, userID);
+		
+		sqlSession.close();
+		
+		return member;
+	}
+
+	public List<MemberDTO> selectAllMember() {
+		
+		SqlSession sqlSession = getSqlSession();
+		
+		List<MemberDTO> memberList = bidDAO.selectAllMember(sqlSession);
+		
+		sqlSession.close();
+		
+		return memberList;
+	}
 }

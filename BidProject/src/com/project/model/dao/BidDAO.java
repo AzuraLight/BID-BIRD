@@ -13,11 +13,34 @@ public class BidDAO {
 		
 		return sqlSession.selectOne("BidMapper.login", userID);
 	}
+
+	public MemberDTO findMemberID(SqlSession sqlSession, String userID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("BidMapper.findMemberID", userID);
+	}
+
+	public MemberDTO findMembreName(SqlSession sqlSession, String userName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("BidMapper.findMembreName", userName);
+	}
+
+	public MemberDTO findMemberEmail(SqlSession sqlSession, String userEmail) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("BidMapper.findMemberEmail", userEmail);
+	}
+
+	public MemberDTO deleteMember(SqlSession sqlSession, String userID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("BidMapper.deleteMember", userID);
+	}
+
+	public List<MemberDTO> selectAllMember(SqlSession sqlSession) {
+		
+		return sqlSession.selectList("BidMapper.selectAllMember");
+		
+	}
 	
-//	public List<MemberDTO> printAll(SqlSession sqlSession, String userID) {
-//		
-//		return sqlSession.selectList("BidMapper.login");
-//	}
+
 
 
 
