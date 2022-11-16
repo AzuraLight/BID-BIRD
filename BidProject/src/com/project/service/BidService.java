@@ -91,4 +91,24 @@ public class BidService {
 		
 		return memberList;
 	}
+
+	public boolean updateMember(MemberDTO member) {
+		SqlSession sqlSession = getSqlSession();
+
+		int result = bidDAO.updateMember(sqlSession, member);
+
+		
+		System.out.println(member);
+		
+		
+		if (result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+
+		sqlSession.close();
+
+		return result > 0 ? true : false;
+	}
 }

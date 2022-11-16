@@ -70,5 +70,18 @@
 
 	</select>
 
+	<update id="updateMember" parameterType="com.project.model.dto.MemberDTO">
+		
+		UPDATE BID_USER
+		SET 
+		USER_NAME = #{userName},
+		USER_PWD = #{userPWD},
+		USER_EMAIL = #{userEmail},
+		USER_PHONE = #{userPhone},
+		USER_ADDRESS = #{userAddress}
+		WHERE USER_ID = #{userID}
+	</update>
+
+	
 
 </mapper>
