@@ -23,7 +23,7 @@
 	
 	<select id= "login" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
 
-		SELECT 
+		SELECT DISTINCT
 		*
 		FROM BID_USER
 		WHERE USER_ID = #{userID}
