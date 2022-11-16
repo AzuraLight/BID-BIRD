@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.print.DocFlavor.STRING;
 
 import com.project.controller.BidController;
 
