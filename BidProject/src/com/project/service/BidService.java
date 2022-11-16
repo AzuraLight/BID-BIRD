@@ -70,6 +70,8 @@ public class BidService {
 		
 		return member;
 	}
+	
+	
 
 	public MemberDTO deleteMember(String userID) {
 		SqlSession sqlSession = getSqlSession();
@@ -91,16 +93,12 @@ public class BidService {
 		
 		return memberList;
 	}
-
-	public boolean updateMember(MemberDTO member) {
+	
+	public boolean signUp(MemberDTO member) {
 		SqlSession sqlSession = getSqlSession();
 
-		int result = bidDAO.updateMember(sqlSession, member);
+		int result = bidDAO.signUp(sqlSession, member);
 
-		
-		System.out.println(member);
-		
-		
 		if (result > 0) {
 			sqlSession.commit();
 		} else {
@@ -111,4 +109,41 @@ public class BidService {
 
 		return result > 0 ? true : false;
 	}
+
+	public boolean updateMember(MemberDTO member) {
+		SqlSession sqlSession = getSqlSession();
+
+		int result = bidDAO.updateMemebr(sqlSession, member);
+
+		if (result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+
+		sqlSession.close();
+
+		return result > 0 ? true : false;
+	}
+
+	public boolean deleteMemberMe(String userID, String userPWD) {
+		SqlSession sqlSession = getSqlSession();
+
+		int result = bidDAO.deleteMemberMe(sqlSession, userID);
+
+		if (result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+
+		sqlSession.close();
+
+		return result > 0 ? true : false;
+	}
+
+	
+
+
+
 }

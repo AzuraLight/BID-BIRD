@@ -6,11 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.project.model.dto.MemberDTO;
 
-
 public class BidDAO {
 
 	public MemberDTO login(SqlSession sqlSession, String userID) {
-		
+
 		return sqlSession.selectOne("BidMapper.login", userID);
 	}
 
@@ -35,21 +34,24 @@ public class BidDAO {
 	}
 
 	public List<MemberDTO> selectAllMember(SqlSession sqlSession) {
-		
+
 		return sqlSession.selectList("BidMapper.selectAllMember");
-		
+
 	}
 
-	public int updateMember(SqlSession sqlSession, MemberDTO member) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("BidMapper.updateMember", member);
-				
-	}
+	public int signUp(SqlSession sqlSession, MemberDTO member) {
 
+		return sqlSession.insert("BidMapper.signUp", member);
+	}
 	
 
+	public int updateMemebr(SqlSession sqlSession, MemberDTO member) {
+		return sqlSession.update("BidMapper.updateMember", member);	
+		}
 
+	public int deleteMemberMe(SqlSession sqlSession, String userID) {
+		return sqlSession.delete("BidMapper.deleteMemberMe", userID);
 
-
+	}
 
 }
