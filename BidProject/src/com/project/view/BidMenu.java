@@ -80,7 +80,8 @@ public class BidMenu {
 		
 		return parameter;
 	}
-
+	
+	// 회원 가입을 위한 메소드 
 	public Map<String, String> insertInfo() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("아이디를 입력해주세요: ");
