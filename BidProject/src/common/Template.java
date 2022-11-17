@@ -1,5 +1,7 @@
 package common;
 
+import static common.Template.getSqlSession;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -31,5 +33,7 @@ public class Template {
 		return sqlsessionFactory.openSession(false);
 		
 	}
+	
+	
 
 }
