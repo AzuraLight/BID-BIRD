@@ -104,7 +104,7 @@ public class BidController {
 		try {
 			 choice = sc.nextInt();
 		} catch(InputMismatchException e) {
-			 System.out.println("잘못된 값을 입력하셨습니다.");
+			 System.out.println("잘못된 값을 입력하셨습니다.!!!!!!!!!!!!!!!");
 	         System.out.println("정수를 입력하세요.");
 	         sc = new Scanner(System.in);
 		}
