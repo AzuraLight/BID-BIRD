@@ -17,7 +17,7 @@ public class Application {
 
 		BidMenu bidMenu = new BidMenu();
 		bidMenu.displayMainmenu();
-		
+		 
 	}
 
 }

@@ -25,7 +25,7 @@ public class BidProduct {
 	}
 	public void setpId(String pId) {
 		this.pId = pId;
-	}
+	} 
 	public String getpName() {
 		return pName;
 	}

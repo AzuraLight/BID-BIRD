@@ -8,11 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
-
 public class BidDAO {
 
 	public MemberDTO login(SqlSession sqlSession, String userID) {
-		
+
 		return sqlSession.selectOne("BidMapper.login", userID);
 	}
 
@@ -37,15 +36,25 @@ public class BidDAO {
 	}
 
 	public List<MemberDTO> selectAllMember(SqlSession sqlSession) {
-		
+
 		return sqlSession.selectList("BidMapper.selectAllMember");
-		
+
 	}
 
+	public int signUp(SqlSession sqlSession, MemberDTO member) {
+
+		return sqlSession.insert("BidMapper.signUp", member);
+	}
+	
+
 	public int updateMember(SqlSession sqlSession, MemberDTO member) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("BidMapper.updateMember", member);
-				
+		return sqlSession.update("BidMapper.updateMemebr", member);	
+
+	}
+	
+	public int deleteMemberMe(SqlSession sqlSession, String userID) {
+		return sqlSession.delete("BidMapper.deleteMemberMe", userID);
+
 	}
 
 	public List<BidProduct> searchAll(SqlSession sqlSession) {
@@ -72,9 +81,5 @@ public class BidDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("BidMapper.cancel",inputCancel);
 	}
-
-
-
-
 
 }

@@ -15,7 +15,6 @@
 		<result property = "userAddress" column = "USER_ADDRESS"/>
 		<result property = "userPhone" column = "USER_PHONE"/>
 		<result property = "memberStatus" column = "MEMBER_STATUS"/>
-		<result property = "mcStatus" column = "MC_STATUS"/>
 		<result property = "enrollDate" column = "ENROLL_DATE"/>
 		<result property = "adminStatus" column = "ADMIN_STATUS"/>
 	
@@ -70,17 +69,55 @@
 
 	</select>
 
-	<update id="updateMember" parameterType="com.project.model.dto.MemberDTO">
-		
-		UPDATE BID_USER
+	<!-- 회원 정보 입력 by 지형  -->
+	<insert id="signUp"
+		parameterType="com.project.model.dto.MemberDTO">
+		INSERT
+			INTO BID_USER A
+		(
+		  A.USER_ID
+		, A.USER_PWD
+		, A.USER_NAME
+		, A.USER_AGE
+        , A.USER_GENDER
+        , A.USER_EMAIL
+		, A.USER_ADDRESS
+		, A.USER_PHONE
+		)
+		VALUES
+		(
+		  #{ userID }
+		, #{ userPWD }
+		, #{ userName }
+		, #{ userAge }
+		, #{ userGender }
+		, #{ userEmail }
+		, #{ userAddress }
+		, #{ userPhone }
+		)
+	</insert>
+	<!-- 회원정보수정 by 지형 -->
+	<update id="updateMemebr"
+		parameterType="com.project.model.dto.MemberDTO">
+		UPDATE
+			BID_USER A
 		SET 
-		USER_NAME = #{userName},
-		USER_PWD = #{userPWD},
-		USER_EMAIL = #{userEmail},
-		USER_PHONE = #{userPhone},
-		USER_ADDRESS = #{userAddress}
-		WHERE USER_ID = #{userID}
+		  A.USER_NAME = #{ userName }
+		, A.USER_PWD = #{ userPWD }
+		, A.USER_EMAIL = #{ userEmail }
+		, A.USER_PHONE = #{ userPhone }
+		, A.USER_ADDRESS = #{ userAddress }
+		WHERE A.USER_ID = #{ userID}
 	</update>
+
+	<!-- 회원측에서 회원탈퇴 by 지형 -->
+	<delete id="deleteMemberMe"
+		parameterType="com.project.model.dto.MemberDTO">
+		DELETE
+		FROM BID_USER A
+		WHERE A.USER_ID = #{ userID }
+	</delete>
+
 
 	<resultMap type="com.project.model.dto.BidProduct"
 		id="productResultMap">

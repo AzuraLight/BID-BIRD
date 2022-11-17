@@ -5,7 +5,6 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.print.DocFlavor.STRING;
 
 import com.project.controller.BidController;
 
@@ -54,7 +53,7 @@ public class BidMenu {
 
 			switch (choice) {
 				case 1: bidController.login(inputMember()); break;
-				case 2: bidController.signUp(); break;
+				case 2: bidController.signUp(insertInfo()); break;
 			default:
 				
 			}
@@ -81,6 +80,47 @@ public class BidMenu {
 		
 		return parameter;
 	}
+	
+	// 회원 가입을 위한 메소드 
+	public Map<String, String> insertInfo() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("아이디를 입력해주세요: ");
+		String userID = sc.nextLine();
 
+		System.out.println("비밀번호를 입력해주세요: ");
+		String userPWD = sc.nextLine();
+
+		System.out.println("이름를 입력해주세요: ");
+		String userName = sc.nextLine();
+
+		System.out.println("나이를 입력해주세요 : ");
+		String userAge = sc.nextLine();
+
+		System.out.println("성별를 입력해주세요: ");
+		String userGender = sc.nextLine().toUpperCase();
+
+		System.out.println("이메일를 입력해주세요: ");
+		String userEmail = sc.nextLine();
+	
+		System.out.println("주소를 입력해주세요: ");
+		String userAddress = sc.nextLine();
+
+		System.out.println("전화번호를 입력해주세요: ");
+		String userPhone = sc.nextLine();
+
+		Map<String, String> parameter = new HashMap<>();
+
+		parameter.put("userID", userID);
+		parameter.put("userPWD", userPWD);
+		parameter.put("userName", userName);
+		parameter.put("userAge", userAge);
+		parameter.put("userGender", userGender);
+		parameter.put("userEmail", userEmail);
+		parameter.put("userAddress", userAddress);
+		parameter.put("userPhone", userPhone);
+
+		return parameter;
+
+	}
 	
 }
