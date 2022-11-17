@@ -43,4 +43,9 @@ public class PrintResult {
 		System.out.println(errorMessage);
 	}
 
+	public void printErrorMessage(MemberDTO member) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
