@@ -112,6 +112,9 @@ public class BidController {
 
 	private void sellProduct() {
 		
+int choice= 0;
+		
+		do {
 		System.out.println("================= 물품 판매 ========================");
 		System.out.println("1. 판매 물품 등록");
 		System.out.println("2. 판매 물품 수정");
@@ -121,8 +124,16 @@ public class BidController {
 		System.out.println("9. 마이페이지로");
 		System.out.print("\n번호를 입력하세요 : ");
 
-		int choice = sc.nextInt();//스캐너로 입력받을값을 choice에 담기
-
+			
+		try {
+			 choice = sc.nextInt();
+		} catch(InputMismatchException e) {
+			 System.out.println("잘못된 값을 입력하셨습니다.!!!!!!!!!!!!!!!");
+	         System.out.println("정수를 입력하세요.");
+	         sc = new Scanner(System.in);
+		}
+		sc.nextLine();
+			
 		switch (choice) {
 		case 1:
 			bidSellController.sellProductRegist(inputProduct());//컨트롤러에 판매제품등록으로이동
@@ -140,11 +151,12 @@ public class BidController {
 			System.out.println("프로그램을 종료합니다");// 프로그램 종료
 			return;
 		case 9:
-			mypage();
+			System.out.println("이전메뉴로 돌아갑니다."); mypage();
 		default:
 			System.out.println("번호를 잘못입력하였습니다.");//잘못입력시 출력되는 문구
 		}
-		while (true);
+		
+		}while (true);
 	} 
 
 	public void signUp(Map<String, String> parameter) {
@@ -766,25 +778,22 @@ public class BidController {
 		bidSellController.sellProductAllSelect();//판매중인제품전체조회메소드를 불러옴 
 		System.out.println("------------------------------------");
 		System.out.println("수정할 물품 id선택 : ");
-		String productId = sc.next();
+		String productId = sc.nextLine();
 
 		System.out.println("제품 아이디를 입력하세요 : ");
-		String pId = sc.next();
+		String pId = sc.nextLine();
 		
 		System.out.println("제품명을 입력하세요 : ");
-		String pName = sc.next();
-		
-		sc.nextLine();
+		String pName = sc.nextLine();
 		
 		System.out.println("제품 사이즈를 입력하세요 : ");
-		String pSize = sc.next().toUpperCase();
+		String pSize = sc.nextLine().toUpperCase();
 		
 		System.out.println("제품 성별을 입력하세요 : ");
-		String pGender = sc.next().toUpperCase();
+		String pGender = sc.nextLine().toUpperCase();
 		
 		System.out.println("제품 가격을 입력하세요 : ");
 		String pPrice = sc.nextLine();
-
 		Map<String, String> parameter = new HashMap<>();
 		parameter.put("pId", pId);
 		parameter.put("pName", pName);
