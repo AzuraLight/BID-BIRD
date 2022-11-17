@@ -57,6 +57,12 @@ public class BidProduct {
 	public void setProductableStatus(char productableStatus) {
 		this.productableStatus = productableStatus;
 	}
+	@Override
+	public String toString() {
+		return "BidProduct [pId=" + pId + ", pName=" + pName + ", pSize=" + pSize + ", pGender=" + pGender + ", pPrice="
+				+ pPrice + ", productableStatus=" + productableStatus + "]";
+	}
+	
 	
 	
 }

@@ -59,7 +59,7 @@ public class BidDAO {
 	}
 
 	public List<BidProduct> searchAll(SqlSession sqlSession) {
-		// TODO Auto-generated method stub
+		System.out.println(sqlSession);
 		return sqlSession.selectList("BidMapper.searchAll");
 	}
 

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import com.project.model.dto.MemberDTO;
 import com.project.service.BidService;
+import com.project.view.BidMenu;
 
 import common.PrintResult;
 
@@ -60,13 +61,14 @@ public class BidController {
 			System.out.println("2.구매 페이지");
 			System.out.println("3.사용자 정보 수정");
 			System.out.println("4.회원 탈퇴");
-			System.out.println("9.로그아웃");
 			System.out.println("-------------------------------------------");
 			System.out.print("번호를 입력하세요 : ");
 
 			try {
 				no = sc.nextInt();
 			} catch (InputMismatchException e) {
+			} catch (NullPointerException e) {
+			} catch (Exception e) {
 				System.out.println("잘못된 값을 입력하셨습니다.");
 				System.out.println("정수를 입력하세요.");
 				sc = new Scanner(System.in);
@@ -75,12 +77,8 @@ public class BidController {
 
 			case 1: sellProduct(); break;
 			case 2: buyProduct(); break;
-			case 3:updateMember(updateInfo()); break;
+			case 3: updateMember(updateInfo()); break;
 			case 4: deleteMemberMe(inputPWD()); break;
-				
-				
-			case 9:
-				return;
 			default:
 				break;
 			}
@@ -117,8 +115,7 @@ public class BidController {
 			System.out.println("프로그램을 종료합니다");// 프로그램 종료
 			return;
 		case 9:
-			//뒤로가기 마이페이지로 이동인데 아직 연결을 못하였다
-			break;
+			mypage();
 		default:
 			System.out.println("번호를 잘못입력하였습니다.");//잘못입력시 출력되는 문구
 		}
@@ -439,19 +436,19 @@ public class BidController {
 		return parameter;
 	}
 	
-	public static void buyProduct() {
+	public void buyProduct() {
 
 		int no = 0;
 		BidService bidService = new BidService();
 
 		do {
-		System.out.println("=======물품 구매 ======");
-		System.out.println("1.물품 조회");
-		System.out.println("2.물품 구매");
-		System.out.println("3.구매 물품 확인");
-		System.out.println("4.구매 물품 취소");
-		System.out.println("9.이전 메뉴로");
-		System.out.println();
+			System.out.println("=========== 구매 페이지 ============");
+			System.out.println("1.물품 조회");
+			System.out.println("2.물품 구매");
+			System.out.println("3.구매 물품 확인");
+			System.out.println("4.구매 물품 취소");
+			System.out.println("9.이전 메뉴로");
+			System.out.println();
 
 		System.out.print("메뉴 선택 : ");
 		try {
@@ -464,22 +461,12 @@ public class BidController {
 		sc.nextLine();
 
 		switch (no) {
-		case 1:
-		productSearch();
-		break;
-		case 2:
-		purchase();
-		break;
-		case 3:
-		purchaseConfirm();
-		break;
-		case 4:
-		cancelPurchase();
-		break;
-		case 9:
-		System.out.println("이전메뉴로 돌아갑니다.");
-		break;
-		}
+			case 1: productSearch(); break;
+			case 2: purchase(); break;
+			case 3: purchaseConfirm(); break;
+			case 4: cancelPurchase(); break;
+			case 9: System.out.println("이전메뉴로 돌아갑니다."); mypage();
+			}
 		} while (true);
 
 	}

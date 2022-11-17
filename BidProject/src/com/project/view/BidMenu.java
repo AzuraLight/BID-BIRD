@@ -46,15 +46,20 @@ public class BidMenu {
 			try {
 			choice = sc.nextInt();
 			} catch (InputMismatchException e) {
+			} catch (NullPointerException e) {
+			} catch (Exception e) {
 				System.out.println("잘못된 값을 입력하셨습니다.");
 				System.out.println("정수를 입력하세요.");
 				sc = new Scanner(System.in);
 			}
 
+	
+
 			switch (choice) {
+				
 				case 1: bidController.login(inputMember()); break;
 				case 2: bidController.signUp(insertInfo()); break;
-			default:
+				default:
 				
 			}
 			
