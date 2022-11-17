@@ -264,7 +264,7 @@ public class BidController {
 			System.out.println("-------------------------------------------");
 			System.out.println("1.회원 전체 조회");
 			System.out.println("2.개인 회원 조회");
-			System.out.println("2.회원 강제 탈퇴");
+			System.out.println("3.회원 강제 탈퇴");
 			System.out.println("9.이전 페이지로");
 			System.out.println("-------------------------------------------");
 			System.out.print("번호를 입력하세요 : ");
