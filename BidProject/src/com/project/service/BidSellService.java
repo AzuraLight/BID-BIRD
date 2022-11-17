@@ -48,8 +48,10 @@ public class BidSellService {
 		int result = bidDAO.insertProduct(sqlSession, product);
 		
 		if(result > 0 ) {
+			System.out.println(product + "판매물품등록에 성공하셨습니다.");
 			sqlSession.commit();
 		}else {
+			System.out.println("판매물품등록에 실패하셨습니다. 다시입력하세요.");
 			sqlSession.rollback();
 		}
 		
@@ -65,8 +67,10 @@ public class BidSellService {
 		int result = bidDAO.updateProduct(sqlSession, product);
 		
 		if(result > 0 ) {
+			System.out.println(product +"판매물품수정에 성공하셨습니다.");
 			sqlSession.commit();
 		}else {
+			System.out.println("판매물품수정에 실패하셨습니다. 다시입력하세요.");
 			sqlSession.rollback();
 		}
 		
@@ -82,8 +86,10 @@ public class BidSellService {
 		int result = bidDAO.deleteProduct(sqlSession, pId);
 		
 		if(result > 0 ) {
+			System.out.println("판매물품삭제에 성공하셨습니다.");
 			sqlSession.commit();
 		}else {
+			System.out.println("판매물품삭제에 실패하셨습니다. 다시입력하세요.");
 			sqlSession.rollback();
 		}
 		
