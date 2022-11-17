@@ -9,19 +9,25 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.project.model.dao.BidDAO;
 import com.project.model.dao.BidSellMapper;
-import com.project.model.dto.BidProductDTO;
+import com.project.model.dto.BidProduct;
 
 
 public class BidSellService {
 	
-	public List<BidProductDTO> sellProductAllSelect() {
+	private final BidDAO bidDAO;
+	
+	public BidSellService() {
+		bidDAO = new BidDAO();
+	}
+	
+	public List<BidProduct> sellProductAllSelect() {
 		
 		SqlSession sqlSession = getSqlSession();
 		
-		BidSellMapper bidSellMapper = sqlSession.getMapper(BidSellMapper.class);
 		
-		List<BidProductDTO> productList = bidSellMapper.sellProductAllSelect();
+		List<BidProduct> productList = bidDAO.sellProductAllSelect(sqlSession);
 		
 		sqlSession.close();
 		
@@ -31,12 +37,11 @@ public class BidSellService {
 		
 	}
 
-	public boolean sellProductRegist(BidProductDTO product) {
+	public boolean sellProductRegist(BidProduct product) {
 		
 		SqlSession sqlSession = getSqlSession();
 		
-		BidSellMapper bidSellMapper = sqlSession.getMapper(BidSellMapper.class);
-		int result = bidSellMapper.insertProduct(product);
+		int result = bidDAO.insertProduct(sqlSession, product);
 		
 		if(result > 0 ) {
 			sqlSession.commit();
@@ -45,18 +50,15 @@ public class BidSellService {
 		}
 		
 		sqlSession.close();
-		
-		
-		
+			
 		return result > 0? true: false;
 	}
 
-	public boolean sellProductUpdate(BidProductDTO product) {
+	public boolean sellProductUpdate(BidProduct product) {
 		
 		SqlSession sqlSession = getSqlSession();
 		
-		BidSellMapper bidSellMapper = sqlSession.getMapper(BidSellMapper.class);
-		int result = bidSellMapper.updateProduct(product);
+		int result = bidDAO.updateProduct(sqlSession, product);
 		
 		if(result > 0 ) {
 			sqlSession.commit();
@@ -65,7 +67,6 @@ public class BidSellService {
 		}
 		
 		sqlSession.close();
-		
 		
 		return result > 0? true: false;
 	}
@@ -74,8 +75,7 @@ public class BidSellService {
 		
 		SqlSession sqlSession = getSqlSession();
 		
-		BidSellMapper bidSellMapper = sqlSession.getMapper(BidSellMapper.class);
-		int result = bidSellMapper.deleteProduct(pId);
+		int result = bidDAO.deleteProduct(sqlSession, pId);
 		
 		if(result > 0 ) {
 			sqlSession.commit();
@@ -84,7 +84,6 @@ public class BidSellService {
 		}
 		
 		sqlSession.close();
-		
 		
 		return result > 0? true: false;
 	}
