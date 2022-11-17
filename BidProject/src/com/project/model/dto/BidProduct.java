@@ -63,7 +63,5 @@ public class BidProduct {
 				+ pPrice + ", productableStatus=" + productableStatus + "]";
 	}
 	
-	
-	
 }
 	
