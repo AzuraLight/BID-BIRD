@@ -2,19 +2,24 @@ package com.project.run;
 
 import com.project.view.BidMenu;
 
-/**
- * @author 이현도
- * 해당 페이지는 메인 메뉴를 실행 시키기 위한 어플리케이션으로
- * 단순 호출만을 위한 페이지입니다.
+
+/*
+ * <pre>
+ * Class : Application
+ * Comment : 해당 클래스는 메인 메뉴를 실행 시키기 위한 어플리케이션으로 작성둔 메뉴를 호출하는 기능만을 담당합니다.
+ * author : 이현도
  */
 public class Application {
 
 	/**
-	 * @param args
+	 * 
+	 * @author 이현도
+	 * 어플리케이션 클래스에서는 메뉴를 실행 시키기 위한 메인 메소드에
+	 * 뷰에서 작성한 메소드를 객체로 호출하여서 실행시킵니다.
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		
 		BidMenu bidMenu = new BidMenu();
 		bidMenu.displayMainmenu();
 		

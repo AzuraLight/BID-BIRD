@@ -9,33 +9,45 @@ import com.project.model.dto.BidProduct;
 import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
+/*
+ * <pre>
+ * Class : BidDAO
+ * Comment : Mapper와 연동하여 DB를 통하여 CRUD 작업을 처리하는 기능을 합니다.
+ * author : 이현도
+ */
 public class BidDAO {
 
+	/* DB를 읽어들여 로그인을 처리하기 위한 메소드 */
 	public MemberDTO login(SqlSession sqlSession, String userID) {
 
 		return sqlSession.selectOne("BidMapper.login", userID);
 	}
 
+	/* DB를 읽어들여 아이디로 회원을 조회하는 기능을 처리하기 위한 메소드 */
 	public MemberDTO findMemberID(SqlSession sqlSession, String userID) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("BidMapper.findMemberID", userID);
 	}
 
+	/* DB를 읽어들여 이름으로 회원을 조회하는 기능을 처리하기 위한 메소드 */
 	public MemberDTO findMembreName(SqlSession sqlSession, String userName) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("BidMapper.findMembreName", userName);
 	}
 
+	/* DB를 읽어들여 이메일로 회원을 조회하는 기능을 처리하기 위한 메소드 */
 	public MemberDTO findMemberEmail(SqlSession sqlSession, String userEmail) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("BidMapper.findMemberEmail", userEmail);
 	}
 
+	/* DB를 읽어들여 회원 삭제 기능을 처리하기 위한 메소드 */
 	public MemberDTO deleteMember(SqlSession sqlSession, String userID) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("BidMapper.deleteMember", userID);
 	}
 
+	/* DB를 읽어들여 회원 전체를 조회하는 기능을 처리하기 위한 메소드 */
 	public List<MemberDTO> selectAllMember(SqlSession sqlSession) {
 
 		return sqlSession.selectList("BidMapper.selectAllMember");
