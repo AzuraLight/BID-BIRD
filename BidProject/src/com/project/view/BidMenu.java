@@ -8,23 +8,31 @@ import java.util.Scanner;
 
 import com.project.controller.BidController;
 
-/**
- * @author 이현도 본 메뉴 페이지는 사용자가 직접 대면하게 되는 ui의 기본 틀이 되는 부분으로 어플리케이션에서 호출 받은 메뉴를
- *         작성하는 페이지입니다.
+
+/*
+ * <pre>
+ * Class : BidMenu
+ * Comment : 본 메뉴 클래스는 사용자가 직접 대면하게 되는 ui의 기본 틀이 되는 부분으로 어플리케이션에서 호출 받은 메뉴를 작성하는 페이지입니다.
+ * author : 이현도
  */
 public class BidMenu {
 
-	// 스캐너를 이용하여서 메뉴 번호를 입력 받을 것이고,
-	// 전역 필드에 static으로 선언하여 먼저 메모리상에 올려둠
+	//스캐너를 이용하여서 메뉴 번호를 입력 받을 것이고, 전역 필드에 static으로 작성으로써 다른 메소드에서도 사용 가능하게 선언해둡니다.
 	private static Scanner sc = new Scanner(System.in);
 
+	//컨트롤러 객체를 호출해서 쓰기 위해 미리 선언해둡니다.
 	private BidController bidController = new BidController();
 
+	/**
+	 * 
+	 * disPlayMainMenu() 메소드는 콘솔 창을 시작 했을 때 첫 화면을 담당하는 부분이고
+	 * 해당 메소드는 컨트롤러에 있는 로그인 기능과 회원가입 기능을 호출합니다.
+	 * 
+     */
 	public void displayMainmenu() {
 		int choice = 0;
 		
 		
-
 		do {
 			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
 			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
@@ -43,8 +51,13 @@ public class BidMenu {
 			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀1. 로   그   인");
 			System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀2. 신규 회원 가입");
 			System.out.print("\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ⠀⠀⠀번호를 입력하세요 : ");
+			
+			
 			try {
-			choice = sc.nextInt();
+			
+				// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.
+				choice = sc.nextInt();
+			
 			} catch (InputMismatchException e) {
 			} catch (NullPointerException e) {
 			} catch (Exception e) {
@@ -52,9 +65,7 @@ public class BidMenu {
 				System.out.println("정수를 입력하세요.");
 				sc = new Scanner(System.in);
 			}
-
-	
-
+			
 			switch (choice) {
 				
 				case 1: bidController.login(inputMember()); break;
@@ -67,6 +78,11 @@ public class BidMenu {
 		
 	}
 
+	/**
+	 * inputMember에서는 로그인을 위한 아이디와 비밀번호 값을 입력 받고 값을 넘겨줍니다.
+	 * for문은 공백을 반복문으로 찍어 첫 화면인 Memu 창과 간격을 두기 위한 부분입니다. 
+	 * @return parameter에 입력 받은 아이디와 비밀번호를 받아서 리턴합니다. 
+	 */
 	private static Map<String, String> inputMember() {
 		
 		for(int i = 0; i < 15; i++) {

@@ -4,6 +4,13 @@ import java.util.List;
 
 import com.project.model.dto.MemberDTO;
 
+
+/*
+ * <pre>
+ * Class : PrintResult
+ * Comment : 호출 받은 여러 메세지를 처리하기 위한 기능들을 모아놓은 클래스입니다.
+ * author : 이현도
+ */
 public class PrintResult {
 	
 	public void printMemberList(List<MemberDTO> memberList) {
@@ -44,7 +51,7 @@ public class PrintResult {
 	}
 
 	public void printErrorMessage(MemberDTO member) {
-		// TODO Auto-generated method stub
+		System.out.println("회원 여부를 확인해주세요");
 		
 	}
 

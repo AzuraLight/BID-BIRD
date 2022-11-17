@@ -12,6 +12,12 @@ import com.project.view.BidMenu;
 
 import common.PrintResult;
 
+/*
+ * <pre>
+ * Class : BidController
+ * Comment : 해당 클래스는 주로 메뉴에서 호출하였던 객체들의 기능을 구현하고 서비스 클래스를 호출하는 역할을 담당합니다.
+ * author : 이현도
+ */
 public class BidController {
 
 	private MemberDTO member;
@@ -20,12 +26,19 @@ public class BidController {
 	private final BidService bidService;
 	private static BidSellController bidSellController;
 
+	/**
+	 * 기초 생성자를 통해 주입하는 방법을 사용하여 미리 객체를 선언해둡니다.
+	 */
 	public BidController() {
 		printResult = new PrintResult();
 		bidService = new BidService();
 		this.bidSellController = new BidSellController();
 	}
 
+	/*
+	 * login 메소드는 메뉴에서 입력 받은 값들을 넘겨 받아 DB를 통해 아이디를 조회하고, 관리자인지 아닌지 확인 후 관리자일 경우 관리자 페이지로 이동하며
+	 * 관리자가 아닌 경우 마이페이지 즉 개인 회원 페이지로 이동하는 기능을 작성하였습니다.
+	 */
 	public void login(Map<String, String> parameter) {
 
 		String userID = parameter.get("userID");
@@ -33,25 +46,37 @@ public class BidController {
 
 		MemberDTO member = bidService.login(userID, userPWD);
 
+		// member 객체가 null 값이 아니면 로그인 성공
 		if (member != null) {
 			System.out.println("로그인에 성공하셨습니다.");
 			System.out.println();
 
+			//가져온 id가 입력 받은 "admin"과 동일하면 관리자이므로 관리자 페이지로 이동
 			if (member.getUserID().equals("admin")) {
 				System.out.println("관리자임이 확인되었습니다.");
 				System.out.println("관리자 페이지로 이동합니다.");
+				
+				//관리자 페이지로 이동하는 메소드르 호출
 				moveto();
+				
+			//"admin" 과 일치 하지 않으면 일반 회원이므로 일반 회원 페이지인 마이페이지로 이동
 			} else {
 				System.out.println("마이페이지로 이동합니다.");
+				
+				//마이 페이지로 이동하는 메소드를 호출
 				mypage();
 			}
 
 		} else {
+			
 			printResult.printErrorMessage(member);
 		}
-
 	}
 
+	/*
+	 * login에서 관리자가 아닌 경우 mypage 메소드를 호출하여 넘어오고, 마이페이지에서는 회원이 사용하는 주요 기능인 1.판매 2.구매 3.사용자 정보 수정 4.탈퇴 
+	 * 등의 기능을 호출하는 역할을 담당합니다. 
+	 */
 	private void mypage() {
 		int no = 0;
 		while (true) {
@@ -228,6 +253,10 @@ public class BidController {
 		return parameter;
 	}
 
+	
+	/**
+	 * login 메소드에서 관리자 일 경우 호출하여 넘어오는 메소드로서 관리자 페이지에서는 DB에 등록되어 있는 회원 전체 조회하는 기능과 개인 회원 조회 및 회원 탈퇴 기능을 수행합니다. 
+	 */
 	private void moveto() {
 		int no = 0;
 		while (true) {
@@ -241,35 +270,36 @@ public class BidController {
 			System.out.print("번호를 입력하세요 : ");
 
 			try {
+				
 				no = sc.nextInt();
+			
+			// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.	
 			} catch (InputMismatchException e) {
 				System.out.println("잘못된 값을 입력하셨습니다.");
 				System.out.println("정수를 입력하세요.");
 				sc = new Scanner(System.in);
 			}
 			switch (no) {
-			case 1:
-				selectAllMember();
-				break;
-			case 2:
-				memberInfo();
-				break;
-			case 3:
-				memberDel();
-				break;
-			case 9:
-				return;
-			default:
-				break;
+			case 1: selectAllMember(); break;
+			case 2: memberInfo(); break;
+			case 3: memberDel(); break;
+			case 9: return;
+			default: break;
+				
 			}
 		}
 	}
 
+	
+	/**
+	 * selectAllMember 메소드는 회원 전체를 조회하고 출력하기 위한 메소드 입니다.
+	 */
 	private void selectAllMember() {
 		List<MemberDTO> memberList = bidService.selectAllMember();
 
 		if (memberList != null) {
 			printResult.printMemberList(memberList);
+			
 			moveto();
 		} else {
 			printResult.printErrorMessage("selectList");
@@ -277,6 +307,9 @@ public class BidController {
 
 	}
 
+	/**
+	 * memberDel 메소드는 회원 삭제를 위한 메소드로서 deleteMember 메소드를 호출한뒤 아이디를 입력 받은 후 해당 회원의 삭제를 실행하는 메소드입니다.
+	 */
 	private void memberDel() {
 		int no = 0;
 
@@ -289,24 +322,26 @@ public class BidController {
 		System.out.print("번호를 입력하세요 : ");
 
 		try {
+			
 			no = sc.nextInt();
+			
+		// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.	
 		} catch (InputMismatchException e) {
 			System.out.println("잘못된 값을 입력하셨습니다.");
 			System.out.println("정수를 입력하세요.");
 			sc = new Scanner(System.in);
 		}
 		switch (no) {
-		case 1:
-			deleteMember(inputMemberIDforDel());
-			break;
-		case 9:
-			moveto();
-			break;
+		case 1: deleteMember(inputMemberIDforDel()); break;
+		case 9: moveto(); break;
 		default:
 		}
 
 	}
 
+	/**
+	 * 회원 삭제 기능을 수행하기 위한 메소드로 아이디를 서비스로 넘겨주는 역할을 합니다.
+	 */
 	private void deleteMember(Map<String, String> parameter) {
 
 		String userID = parameter.get("userID");
@@ -315,6 +350,10 @@ public class BidController {
 
 	}
 
+	/**
+	 * memberDel에서 회원 삭제를 위해 정보를 입력 받는 메소드로서 아이디를 입력 받고 
+	 * @return 값을 parameter로 하여 deleteMember 메소드에 저장된 정보를 넘겨주는 역할을 합니다. 
+	 */
 	private Map<String, String> inputMemberIDforDel() {
 		System.out.print("아이디를 입력하세요. : ");
 		String userID = sc.next();
@@ -325,6 +364,9 @@ public class BidController {
 		return parameter;
 	}
 
+	/**
+	 * memberInfo 메소드는 1.아이디 2.이름 3.이메일 검색하기를 통해 회원 개인을 조회 할 수 있도록 메소드를 호출하는 역할을 합니다. 
+	 */
 	private void memberInfo() {
 		int no = 0;
 
@@ -338,7 +380,10 @@ public class BidController {
 		System.out.print("번호를 입력하세요 : ");
 
 		try {
+			
 			no = sc.nextInt();
+
+		// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.		
 		} catch (InputMismatchException e) {
 			System.out.println("잘못된 값을 입력하셨습니다.");
 			System.out.println("정수를 입력하세요.");
@@ -346,24 +391,18 @@ public class BidController {
 		}
 
 		switch (no) {
-		case 1:
-			findMemberID(inputfindMemberID());
-			memberInfo();
-		case 2:
-			findMembreName(inputfindMemberName());
-			memberInfo();
-		case 3:
-			findMemberEmail(inputfindMemberEmail());
-			memberInfo();
-		case 9:
-			moveto();
-			break;
-		default:
-			break;
+		case 1: findMemberID(inputfindMemberID()); memberInfo();
+		case 2: findMembreName(inputfindMemberName()); memberInfo();
+		case 3: findMemberEmail(inputfindMemberEmail()); memberInfo();
+		case 9: moveto(); break;
+		default: break;
 		}
 
 	}
 
+	/**
+	 * inputfindMemberEmail 메소드에서 입력 받은 이메일을 서비스로 넘겨주는 역할을 합니다.
+	 */
 	private void findMemberEmail(Map<String, String> parameter) {
 		String userEmail = parameter.get("userEmail");
 
@@ -378,6 +417,10 @@ public class BidController {
 
 	}
 
+	/**
+	 * memberInfo에서 개인 회원 조회를 위해 정보를 입력 받는 메소드로서 이메일을 입력 받고 
+	 * @return 값을 parameter로 하여 findMemberEmail 메소드에 저장된 정보를 넘겨주는 역할을 합니다. 
+	 */
 	private static Map<String, String> inputfindMemberEmail() {
 		System.out.print("이메일을 입력하세요. : ");
 		String userEmail = sc.next();
@@ -388,6 +431,10 @@ public class BidController {
 		return parameter;
 	}
 
+	
+	/**
+	 * inputfindMemberName 메소드에서 입력 받은 이름을 서비스로 넘겨주는 역할을 합니다.
+	 */
 	private void findMembreName(Map<String, String> parameter) {
 		String userName = parameter.get("userName");
 
@@ -402,6 +449,10 @@ public class BidController {
 
 	}
 
+	/**
+	 * memberInfo에서 개인 회원 조회를 위해 정보를 입력 받는 메소드로서 이름을 입력 받고 
+	 * @return 값을 parameter로 하여 findMembreName 메소드에 저장된 정보를 넘겨주는 역할을 합니다. 
+	 */
 	private static Map<String, String> inputfindMemberName() {
 		System.out.print("이름을 입력하세요. : ");
 		String userName = sc.next();
@@ -412,6 +463,9 @@ public class BidController {
 		return parameter;
 	}
 
+	/**
+	 * inputfindMemberID 메소드에서 입력 받은 아이디를 서비스로 넘겨주는 역할을 합니다.
+	 */
 	private void findMemberID(Map<String, String> parameter) {
 		String userID = parameter.get("userID");
 
@@ -426,6 +480,10 @@ public class BidController {
 
 	}
 
+	/**
+	 * memberInfo에서 개인 회원 조회를 위해 정보를 입력 받는 메소드로서 아이디를 입력 받고 
+	 * @return 값을 parameter로 하여 findMembreName 메소드에 저장된 정보를 넘겨주는 역할을 합니다. 
+	 */
 	private static Map<String, String> inputfindMemberID() {
 		System.out.print("아이디를 입력하세요. : ");
 		String userID = sc.next();

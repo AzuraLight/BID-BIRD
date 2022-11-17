@@ -14,9 +14,12 @@ import com.project.model.dao.BidDAO;
 import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
-/**
- * @author 이현도
- *
+
+/*
+ * <pre>
+ * Class : BidService
+ * Comment : 해당 클래스는 컨트롤러에서 필요로 하는 기능을 제공하며, DAO를 통해서 데이터에 접근하고 기능을 수행하는데 필요한 로직을 수행합니다.
+ * author : 이현도
  */
 public class BidService {
 
@@ -26,70 +29,93 @@ public class BidService {
 		bidDAO = new BidDAO();
 	}
 
+	/* 로그인 처리용 메소드 */
 	public MemberDTO login(String userID, String userPWD) {
 
+		
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 로그인 메소드를 호출하여 결과를 리턴 받음
 		MemberDTO member = bidDAO.login(sqlSession, userID);
 
+		// 유저가 입력한 비밀번호가 DB에 존재하는 비밀번호와 일치하는지 확인
 		if (userPWD.equals(member.getUserPWD())) {
+			
+			//일치하는 경우 반환 받은 값을 리턴
 			return member;
 
 		}
+		
 		sqlSession.close();
 		return null;
-
 	}
 
+	/* 아이디로 회원을 조회하기 위한 메소드 */
 	public MemberDTO findMemberID(String userID) {
 
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 아이디로 회원을 조회하는 메소드를 호출하여 결과를 리턴 받음
 		MemberDTO member = bidDAO.findMemberID(sqlSession, userID);
 
 		sqlSession.close();
 
+		//반환 받은 값을 리턴
 		return member;
 	}
 
+	/* 이름으로 회원을 조회하기 위한 메소드 */
 	public MemberDTO findMembreName(String userName) {
+		
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 이름으로 회원을 조회하는 메소드를 호출하여 결과를 리턴 받음
 		MemberDTO member = bidDAO.findMembreName(sqlSession, userName);
 
 		sqlSession.close();
 
+		//반환 받은 값을 리턴
 		return member;
 	}
 
+	/* 이메일로 회원을 조회하기 위한 메소드 */
 	public MemberDTO findMemberEmail(String userEmail) {
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 이메일로 회원을 조회하는 메소드를 호출하여 결과를 리턴 받음
 		MemberDTO member = bidDAO.findMemberEmail(sqlSession, userEmail);
 
 		sqlSession.close();
 
+		//반환 받은 값을 리턴
 		return member;
 	}
 
+	/* 회원 삭제를 위한 메소드 */
 	public MemberDTO deleteMember(String userID) {
+		
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 회원 삭제를 위한 메소드를 호출하여 결과를 리턴 받음
 		MemberDTO member = bidDAO.deleteMember(sqlSession, userID);
 
 		sqlSession.close();
 
+		//반환 받은 값을 리턴
 		return member;
 	}
 
+	/* 전체 회원을 조회하기 위한 메소드 */
 	public List<MemberDTO> selectAllMember() {
 
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 회원 전체 조회용 메소드를 호출하여 결과를 리턴 받음
 		List<MemberDTO> memberList = bidDAO.selectAllMember(sqlSession);
 
 		sqlSession.close();
 
+		//반환 받은 값을 리턴
 		return memberList;
 	}
 
