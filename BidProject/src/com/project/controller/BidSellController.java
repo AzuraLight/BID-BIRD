@@ -12,7 +12,7 @@ import com.project.service.BidSellService;
 
 import common.BidSellPrintResult;
 
-/**
+/** 
  * @author 이현도
  * 뷰에서 사용자가 입력한 정보를 가공 한 뒤 서비스쪽으로 전달 역할을 하는 페이지
  *

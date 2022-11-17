@@ -7,7 +7,7 @@ import java.util.Scanner;
 import com.project.controller.BidSellController;
 import com.project.model.dto.BidProductDTO;
 
-public class BidSellMenu {
+public class BidSellMenu { 
 
 	// 스캐너를 이용하여서 메뉴 번호를 입력 받을 것이고,
 	// 전역 필드에 static으로 선언하여 먼저 메모리상에 올려둠

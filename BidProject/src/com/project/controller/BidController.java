@@ -16,6 +16,9 @@ import common.PrintResult;
  * <pre>
  * Class : BidController
  * Comment : 해당 클래스는 주로 메뉴에서 호출하였던 객체들의 기능을 구현하고 서비스 클래스를 호출하는 역할을 담당합니다.
+ * History
+ * (이현도) BidController 작성
+ * (이지형) 세로운 회원 정보 추가 & 정보 수정 & 탈퇴 메소드 추가
  * author : 이현도
  */
 public class BidController {
@@ -26,7 +29,7 @@ public class BidController {
 	private final BidService bidService;
 	private static BidSellController bidSellController;
 
-	/**
+	/* 
 	 * 기초 생성자를 통해 주입하는 방법을 사용하여 미리 객체를 선언해둡니다.
 	 */
 	public BidController() {
@@ -147,8 +150,13 @@ public class BidController {
 		while (true);
 	} 
 
+	/**
+	 * signUp 메소드는 BidMenu에서 입력한 정보를 파라미터 형태로 전달받은후 전달받은 값들을
+	 * 인스턴스에 담아 서비스에 전달하는 메소드 작성. 또한 수행 결과를 반환 받아 사용자에게 표시. 
+	 */
 	public void signUp(Map<String, String> parameter) {
-
+		
+		//BidMenu에서 파라미터로 저장된 값을 불러옴, DB에 추가하기 위해 형변환 처리 
 		String userID = parameter.get("userID");
 		String userPWD = parameter.get("userPWD");
 		String userName = parameter.get("userName");
@@ -159,6 +167,7 @@ public class BidController {
 		String userAddress = parameter.get("userAddress");
 		String userPhone = parameter.get("userPhone");
 
+		//서비스쪽으로 전달하기 위해 DTO 인스턴스에 값 담기
 		MemberDTO member = new MemberDTO();
 		member.setUserID(userID);
 		member.setUserPWD(userPWD);
@@ -169,6 +178,7 @@ public class BidController {
 		member.setUserAddress(userAddress);
 		member.setUserPhone(userPhone);
 
+		//서비스에서 처리한 결과를 이용해 수행 결과 값(등록 성공 OR 등록 실패)를 사용자에게 표시. 
 		if (bidService.signUp(member)) {
 			printResult.printSuccessMessage("insert");
 		} else {
@@ -177,7 +187,13 @@ public class BidController {
 
 	}
 	
+	/**
+	 * updateMember 메소드는 updateInfo에서 입력한 정보를 파라미터 형태로 전달받은후 전달받은 값들을
+	 * 인스턴스에 담아 서비스에 전달하는 메소드 작성. 또한 수행 결과를 반환 받아 사용자에게 표시. 
+	 */
 	public void updateMember(Map<String, String> parameter) {
+	
+		//updateInfo에서 입력받아 파라미터로 저장된 값을 불러옴
 		String userID = parameter.get("userID");
 		String userName = parameter.get("userName");
 		String userPWD = parameter.get("userPWD");
@@ -185,7 +201,7 @@ public class BidController {
 		String userAddress = parameter.get("userAddress");
 		String userPhone = parameter.get("userPhone");
 		
-		
+		//서비스쪽으로 전달하기 위해 DTO 인스턴스에 값 담기
 		MemberDTO member = new MemberDTO();
 		member.setUserID(userID);
 		member.setUserName(userName);
@@ -194,6 +210,8 @@ public class BidController {
 		member.setUserAddress(userAddress);
 		member.setUserPhone(userPhone);
 
+		
+		//서비스에서 처리한 결과를 이용해 수행 결과 값(등록 성공 OR 등록 실패)를 사용자에게 표시. 
 		if (bidService.updateMember(member)) {
 			printResult.printSuccessMessage("update");
 		} else {
@@ -201,8 +219,11 @@ public class BidController {
 		}
 				
 	}
+	
+	/* 새로 수정된 회원 정보를 입력 받는 메소드 */
 	public Map<String, String> updateInfo() {
-		Scanner sc = new Scanner(System.in);
+
+		//스캐너로 새로 수정된 값을 입력 받음
 		System.out.println("수정할 아이디를 입력하세요 : ");
 		String userID = sc.nextLine();
 		System.out.println("변경할 이름를 입력해주세요:");
@@ -216,6 +237,7 @@ public class BidController {
 		System.out.println("변경할 주소를 입력해주세요: ");
 		String userPhone = sc.nextLine();
 
+		//입력받은 키값을 파라미터로 키값 저장. 
 		Map<String, String> parameter = new HashMap<>();
 		parameter.put("userID", userID);
 		parameter.put("userName", userName);
@@ -224,16 +246,22 @@ public class BidController {
 		parameter.put("userAddress", userAddress);
 		parameter.put("userPhone", userPhone);
 
+		//파라미터로 저장된 값 반환
 		return parameter;
 
 	}
 	
-	
+	/**
+	 * deleteMemberMe 메소드는 inputPWD에서 파라미터 형태 저장된 값들을 전달받은후 전달받은 값들을
+	 * 서비스에 전달하는 메소드 작성. 또한 수행 결과를 반환 받아 사용자에게 표시. 
+	 */
 	private void deleteMemberMe(Map<String, String> parameter) {
-		System.out.println("ID를 다시 입력해주세요: ");
+		
+		//inputPWD에서 입력받은 값 불러옴
 		String userID = parameter.get("userID");
-		System.out.println("비밀번호를 다시 입력해주세요: ");
 		String userPWD = parameter.get("userPWD");
+		
+		//값을 서비스를 넘겨주고 수행된 결과 값을 사용자에게 표시
 		if (bidService.deleteMemberMe(userID, userPWD)) {
 			printResult.printSuccessMessage("delete");
 		} else {
@@ -242,14 +270,21 @@ public class BidController {
 
 	}
 
+	/* 회원 탈퇴 확인을 위한 ID와 PWD 값을 입력 받기 위한 메소드 */
 	private static Map<String, String> inputPWD() {
+		
+		//탈퇴 확인을 위한 아이디와 비밀번호를 스캐너로 입력받음
 		System.out.println("아이디를 다시 입력해주세요: ");
 		String userID = sc.next();
 		System.out.println("비밀번호를 다시 입력해주세요: ");
 		String userPWD = sc.next();
+		
+		//값을 파라티터로 저장
 		Map<String, String> parameter = new HashMap<>();
 		parameter.put("userID", userID);
 		parameter.put("userPWD", userPWD);
+		
+		//저장된 값 반환
 		return parameter;
 	}
 

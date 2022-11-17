@@ -14,11 +14,14 @@ import com.project.model.dao.BidDAO;
 import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
-
+ 
 /*
  * <pre>
  * Class : BidService
  * Comment : 해당 클래스는 컨트롤러에서 필요로 하는 기능을 제공하며, DAO를 통해서 데이터에 접근하고 기능을 수행하는데 필요한 로직을 수행합니다.
+ * History
+ * (이현도) BidService 작성 & 회원 조회 & 관리자용 회원 삭제 메소드 작성
+ * (이지형) 세로운 회원 정보 추가 & 정보 수정 & 탈퇴 메소드 작성
  * author : 이현도
  */
 public class BidService {
@@ -119,11 +122,14 @@ public class BidService {
 		return memberList;
 	}
 
+	/* 새로운 회원 정보 추가를 위한 메소드 */
 	public boolean signUp(MemberDTO member) {
 		SqlSession sqlSession = getSqlSession();
-
+		
+		// DAO의 회원 정보 추가 메소드를 호출하여 결과를 리턴 받음
 		int result = bidDAO.signUp(sqlSession, member);
 
+		//리턴 받은 결과 값 판단 후 트랜젝션 처리
 		if (result > 0) {
 			sqlSession.commit();
 		} else {
@@ -132,14 +138,18 @@ public class BidService {
 
 		sqlSession.close();
 
+		//드렌젝션 처리한 값 반환
 		return result > 0 ? true : false;
 	}
 
+	/* 수정된 회원 정보를 입력하기 위한 메소드 */
 	public boolean updateMember(MemberDTO member) {
 		SqlSession sqlSession = getSqlSession();
 
+		//DAO의 회원 정보 추가 메소드를 호출하여 결과를 리턴 받음
 		int result = bidDAO.updateMember(sqlSession, member);
 
+		//리턴 받은 결과 값 판단 후 트랜젝션 처리
 		if (result > 0) {
 			sqlSession.commit();
 		} else {
@@ -148,14 +158,18 @@ public class BidService {
 
 		sqlSession.close();
 
+		//드렌젝션 처리한 값 반환
 		return result > 0 ? true : false;
 	}
 
+	/*회원 정보를 삭제 하기 위한 메소드 */
 	public boolean deleteMemberMe(String userID, String userPWD) {
 		SqlSession sqlSession = getSqlSession();
 
+		//DAO의 회원 정보 삭제 메소드를 호출하여 결과를 리턴 받음
 		int result = bidDAO.deleteMemberMe(sqlSession, userID);
 
+		//리턴 받은 결과 값 판단 후 트랜젝션 처리
 		if (result > 0) {
 			sqlSession.commit();
 		} else {
@@ -164,6 +178,7 @@ public class BidService {
 
 		sqlSession.close();
 
+		//드렌젝션 처리한 값 반환
 		return result > 0 ? true : false;
 	}
 

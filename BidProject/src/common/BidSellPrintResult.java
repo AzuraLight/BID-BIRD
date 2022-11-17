@@ -12,7 +12,7 @@ public class BidSellPrintResult {
 		for(BidProduct product : productList) {
 			System.out.println(product);
 			
-		}
+		} 
 	
 		
 	}

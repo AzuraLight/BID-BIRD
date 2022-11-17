@@ -4,7 +4,7 @@ import com.project.view.BidMenu;
 
 
 /*
- * <pre>
+ * <pre> 
  * Class : Application
  * Comment : 해당 클래스는 메인 메뉴를 실행 시키기 위한 어플리케이션으로 작성둔 메뉴를 호출하는 기능만을 담당합니다.
  * author : 이현도

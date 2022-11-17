@@ -16,7 +16,7 @@ public class PrintResult {
 	public void printMemberList(List<MemberDTO> memberList) {
 		
 		for(MemberDTO member : memberList) {
-			System.out.println(member);
+			System.out.println(member); 
 		}
 	}
 	
@@ -24,6 +24,7 @@ public class PrintResult {
 		System.out.println(member);
 	}
 	
+	//각 메소드의 수행에 따른 결과 정상 처리된 결과를 표시하기 위한 메소드
 	public void printSuccessMessage(String successCode) {
 		
 		String successMessage = "";
@@ -36,6 +37,7 @@ public class PrintResult {
 		System.out.println(successMessage);
 	}
 	
+	//각 메소드의 수행에 따른 결과 정상 처리되지 않은 결과를 표시하기 위한 메소드
 	public void printErrorMessage(String errorCode) {// 각 메소드에서 호출시케이스마다 추가하면서 하자
 		
 		String errorMessage = "";

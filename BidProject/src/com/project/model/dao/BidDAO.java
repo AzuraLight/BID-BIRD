@@ -10,9 +10,12 @@ import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
 /*
- * <pre>
+ * <pre> 
  * Class : BidDAO
  * Comment : Mapper와 연동하여 DB를 통하여 CRUD 작업을 처리하는 기능을 합니다.
+ * (이현도) BidDAO 처음 작성
+ * (이현도) DB를 조회하여 로그인처리 메소드, DB에 회원 조회 그리고 관리자용 회원 삭제 메소드 작성
+ * (이지형) DB에 새로운 회원 정보 추가 & 정보 수정 & 탈퇴 메소드 작성
  * author : 이현도
  */
 public class BidDAO {
@@ -54,17 +57,19 @@ public class BidDAO {
 
 	}
 
+	/* DB에 입력받은 새로운 값들을 추가하기 위한 메소드 */
 	public int signUp(SqlSession sqlSession, MemberDTO member) {
 
 		return sqlSession.insert("BidMapper.signUp", member);
 	}
 	
-
+	/* DB에 입력받은 수정된 정보을 처리하기 위한 메소드 */
 	public int updateMember(SqlSession sqlSession, MemberDTO member) {
 		return sqlSession.update("BidMapper.updateMemebr", member);	
 
 	}
 	
+	/* DB에 회원 탈퇴를 처리하기 위한 메소드 */
 	public int deleteMemberMe(SqlSession sqlSession, String userID) {
 		return sqlSession.delete("BidMapper.deleteMemberMe", userID);
 
