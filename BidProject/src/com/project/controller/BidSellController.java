@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.project.model.dto.BidProductDTO;
+import com.project.model.dto.BidProduct;
 import com.project.service.BidSellService;
+
 import common.BidSellPrintResult;
 
 /**
@@ -31,7 +32,7 @@ public class BidSellController {
 
 	public void sellProductAllSelect() {
 		
-		List<BidProductDTO> productList = bidSellService.sellProductAllSelect();
+		List<BidProduct> productList = bidSellService.sellProductAllSelect();
 		
 		if(productList != null) {
 			bidSellPrintResult.printProductList(productList);
@@ -53,7 +54,7 @@ public class BidSellController {
 		int pPrice = Integer.parseInt(parameter.get("pPrice"));
 		
 		
-		BidProductDTO product = new BidProductDTO();
+		BidProduct product = new BidProduct();
 		product.setpId(pId);
 		product.setpName(pName);
 		product.setpSize(pSize);
@@ -79,7 +80,7 @@ public class BidSellController {
 		char pGender = pgender.charAt(0);
 		int pPrice = Integer.parseInt(parameter.get("pPrice"));
 		
-		BidProductDTO product = new BidProductDTO();
+		BidProduct product = new BidProduct();
 		product.setpId(pId);
 		product.setpName(pName);
 		product.setpSize(pSize);

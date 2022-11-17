@@ -7,6 +7,7 @@ public class BidProduct {
 	private char pSize;
 	private char pGender;
 	private int pPrice;
+	
 	private char productableStatus;
 	public BidProduct() {
 		// TODO Auto-generated constructor stub
@@ -25,7 +26,7 @@ public class BidProduct {
 	}
 	public void setpId(String pId) {
 		this.pId = pId;
-	} 
+	}
 	public String getpName() {
 		return pName;
 	}
@@ -56,13 +57,7 @@ public class BidProduct {
 	public void setProductableStatus(char productableStatus) {
 		this.productableStatus = productableStatus;
 	}
-	@Override
-	public String toString() {
-		return "BidProduct [pId=" + pId + ", pName=" + pName + ", pSize=" + pSize + ", pGender=" + pGender + ", pPrice="
-				+ pPrice + ", productableStatus=" + productableStatus + "]";
-	}
 	
-
 	
 }
 	

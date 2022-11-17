@@ -2,14 +2,14 @@ package common;
 
 import java.util.List;
 
-import com.project.model.dto.BidProductDTO;
+import com.project.model.dto.BidProduct;
 
 public class BidSellPrintResult {
 
 	
-	public void printProductList(List<BidProductDTO> productList) {
+	public void printProductList(List<BidProduct> productList) {
 		
-		for(BidProductDTO product : productList) {
+		for(BidProduct product : productList) {
 			System.out.println(product);
 			
 		}

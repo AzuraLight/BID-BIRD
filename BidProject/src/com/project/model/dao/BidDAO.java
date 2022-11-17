@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.project.model.dto.BidProduct;
+import com.project.model.dto.BidProduct;
 import com.project.model.dto.MemberDTO;
 
 public class BidDAO {
@@ -80,6 +81,26 @@ public class BidDAO {
 	public List<BidProduct> cancel(SqlSession sqlSession, Map<String, Object> inputCancel) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("BidMapper.cancel",inputCancel);
+	}
+
+	public List<BidProduct> sellProductAllSelect(SqlSession sqlSession) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("BidMapper.sellProductAllSelect");
+	}
+
+	public int insertProduct(SqlSession sqlSession, BidProduct product) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("BidMapper.insertProduct", product);
+	}
+
+	public int updateProduct(SqlSession sqlSession, BidProduct product) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("BidMapper.updateProduct", product);
+	}
+
+	public int deleteProduct(SqlSession sqlSession, String pId) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("BidMapper.deleteProduct", pId);
 	}
 
 }

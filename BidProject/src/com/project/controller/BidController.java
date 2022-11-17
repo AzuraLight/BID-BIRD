@@ -17,10 +17,12 @@ public class BidController {
 	private static Scanner sc = new Scanner(System.in);
 	private final PrintResult printResult;
 	private final BidService bidService;
+	private static BidSellController bidSellController;
 
 	public BidController() {
 		printResult = new PrintResult();
 		bidService = new BidService();
+		this.bidSellController = new BidSellController();
 	}
 
 	public void login(Map<String, String> parameter) {
@@ -71,14 +73,12 @@ public class BidController {
 			}
 			switch (no) {
 
-			// case 1: sellProduct(); break;
+			case 1: sellProduct(); break;
 			case 2: buyProduct(); break;
-			case 3:
-				updateMember(updateInfo());
-				break;
-			case 4:
-				deleteMemberMe(inputPWD());
-				break;
+			case 3:updateMember(updateInfo()); break;
+			case 4: deleteMemberMe(inputPWD()); break;
+				
+				
 			case 9:
 				return;
 			default:
@@ -86,6 +86,44 @@ public class BidController {
 			}
 		}
 	}
+
+	private void sellProduct() {
+		
+		System.out.println("================= 물품 판매 ========================");
+		System.out.println("1. 판매 물품 등록");
+		System.out.println("2. 판매 물품 수정");
+		System.out.println("3. 판매 물품 삭제");
+		System.out.println("⠀4. 판매 물품 확인");
+		System.out.println("8. 종료하기");
+		System.out.println("9. 마이페이지로");
+		System.out.print("\n번호를 입력하세요 : ");
+
+		int choice = sc.nextInt();//스캐너로 입력받을값을 choice에 담기
+
+		switch (choice) {
+		case 1:
+			bidSellController.sellProductRegist(inputProduct());//컨트롤러에 판매제품등록으로이동
+			break;
+		case 2:
+			bidSellController.sellProductUpdate(inputUpdateProduct());//컨트롤러에 판매제품수정으로이동
+			break;
+		case 3: 
+			bidSellController.sellProductDelete(inputDeleteProduct()); //컨트롤러에 판매제품삭제로이동
+			break;
+		case 4:
+			bidSellController.sellProductAllSelect();//컨트롤러에 판매제품전체조회으로로이동
+			break;
+		case 8:
+			System.out.println("프로그램을 종료합니다");// 프로그램 종료
+			return;
+		case 9:
+			//뒤로가기 마이페이지로 이동인데 아직 연결을 못하였다
+			break;
+		default:
+			System.out.println("번호를 잘못입력하였습니다.");//잘못입력시 출력되는 문구
+		}
+		while (true);
+	} 
 
 	public void signUp(Map<String, String> parameter) {
 
@@ -565,7 +603,6 @@ public class BidController {
 	}
 
 	private static Map<String, Object>inputSearchMap() {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("검색할 조건을 입력하세요(name or size ) : ");
 		String condition = sc.nextLine().toLowerCase();
 		
@@ -590,7 +627,6 @@ public class BidController {
 	}
 
 	private static Map<String, Object> inputChangeInfo() {
-		Scanner sc = new Scanner(System.in);
 		System.out.print("구매할 메뉴 이름을 입력하세요 :");
 		String name = sc.nextLine();
 		System.out.print("정말 구매 하시겠습니까(Y/N) :");
@@ -602,5 +638,147 @@ public class BidController {
 		changeInfo.put("productableStatus", productableStatus);
 		return changeInfo;
 	}
+	
+	private static Map<String, String> inputMember() {
+		
+		for(int i = 0; i < 15; i++) {
+			System.out.println();
+		}
+		
+		System.out.print("아이디를 입력하세요. : ");
+		String userID = sc.next().toLowerCase();
+		
+		System.out.print("비밀번호를 입력하세요. : ");
+		String userPWD = sc.next().toLowerCase();
+		
+		Map<String, String> parameter = new HashMap<>();
+		parameter.put("userID", userID);
+		parameter.put("userPWD", userPWD);
+		
+		return parameter;
+	}
+	
+	// 회원 가입을 위한 메소드 
+	public Map<String, String> insertInfo() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("아이디를 입력해주세요: ");
+		String userID = sc.nextLine();
 
+		System.out.println("비밀번호를 입력해주세요: ");
+		String userPWD = sc.nextLine();
+
+		System.out.println("이름를 입력해주세요: ");
+		String userName = sc.nextLine();
+
+		System.out.println("나이를 입력해주세요 : ");
+		String userAge = sc.nextLine();
+
+		System.out.println("성별를 입력해주세요: ");
+		String userGender = sc.nextLine().toUpperCase();
+
+		System.out.println("이메일를 입력해주세요: ");
+		String userEmail = sc.nextLine();
+	
+		System.out.println("주소를 입력해주세요: ");
+		String userAddress = sc.nextLine();
+
+		System.out.println("전화번호를 입력해주세요: ");
+		String userPhone = sc.nextLine();
+
+		Map<String, String> parameter = new HashMap<>();
+
+		parameter.put("userID", userID);
+		parameter.put("userPWD", userPWD);
+		parameter.put("userName", userName);
+		parameter.put("userAge", userAge);
+		parameter.put("userGender", userGender);
+		parameter.put("userEmail", userEmail);
+		parameter.put("userAddress", userAddress);
+		parameter.put("userPhone", userPhone);
+
+		return parameter;
+
+	}
+
+	private static Map<String, String> inputDeleteProduct() {
+		
+		Scanner sc= new Scanner(System.in);//스캐너 생성
+		System.out.println("삭제할 제품 아이디를 입력하세요 : ");//삭제할제품아이디 출력문
+		String pId = sc.nextLine();//스캐너로 입력받은값을 넣어줌
+		
+		
+		Map<String, String> parameter = new HashMap<>();//map과 hashMap으로 parameter에 key value값에 put으로 입력
+		parameter.put("pId", pId);
+		
+		
+		return parameter; // parameter로 리턴
+	}
+	
+	
+	//판매제품수정
+	private static Map<String, String> inputUpdateProduct() {
+
+		bidSellController.sellProductAllSelect();//판매중인제품전체조회메소드를 불러옴 
+		System.out.println("------------------------------------");
+		System.out.println("수정할 물품 id선택 : ");
+		String productId = sc.next();
+
+		System.out.println("제품 아이디를 입력하세요 : ");
+		String pId = sc.next();
+		
+		System.out.println("제품명을 입력하세요 : ");
+		String pName = sc.next();
+		
+		sc.nextLine();
+		
+		System.out.println("제품 사이즈를 입력하세요 : ");
+		String pSize = sc.next().toUpperCase();
+		
+		System.out.println("제품 성별을 입력하세요 : ");
+		String pGender = sc.next().toUpperCase();
+		
+		System.out.println("제품 가격을 입력하세요 : ");
+		String pPrice = sc.nextLine();
+
+		Map<String, String> parameter = new HashMap<>();
+		parameter.put("pId", pId);
+		parameter.put("pName", pName);
+		parameter.put("pSize", pSize);
+		parameter.put("pGender", pGender);
+		parameter.put("pPrice", pPrice);
+
+		return parameter;
+
+		
+		
+	}
+	//판매제품등록
+	private static Map<String, String> inputProduct() {
+
+		System.out.println("제품 아이디를 입력하세요 : ");
+		String pId = sc.next();
+		
+		System.out.println("제품명을 입력하세요 : ");
+		String pName = sc.next();
+		
+		System.out.println("제품 사이즈를 입력하세요(S,M,L) : ");
+		String pSize = sc.next().toUpperCase();
+		
+		sc.nextLine();
+		System.out.println("제품 성별을 입력하세요(M,F) : ");
+		String pGender = sc.next().toUpperCase();
+		
+		System.out.println("제품 가격을 입력하세요 : ");
+		String pPrice = sc.next();
+
+		Map<String, String> parameter = new HashMap<>();
+		parameter.put("pId", pId);
+		parameter.put("pName", pName);
+		parameter.put("pSize", pSize);
+		parameter.put("pGender", pGender);
+		parameter.put("pPrice", pPrice);
+
+		return parameter;
+	}
+	
 }
