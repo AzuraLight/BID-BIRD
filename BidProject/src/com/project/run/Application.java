@@ -1,6 +1,7 @@
 package com.project.run;
 
 import com.project.view.BidMenu;
+import com.project.view.BidSellMenu;
 
 /**
  * @author 이현도
@@ -17,6 +18,11 @@ public class Application {
 
 		BidMenu bidMenu = new BidMenu();
 		bidMenu.displayMainmenu();
+		
+		
+		//판매페이지 실행
+		//BidSellMenu bidSellMenu = new BidSellMenu();
+		//bidSellMenu.displayMainSellMenu();
 		 
 	}
 

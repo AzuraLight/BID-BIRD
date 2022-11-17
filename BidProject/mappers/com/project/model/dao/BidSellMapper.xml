@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.model.dao.BidSellMapper">
+
+	<resultMap type="com.project.model.dto.BidProductDTO" id="productResultMap" >
+	
+	<id property = "pId" column = "P_ID" />
+	
+	<result property = "pName" column = "P_NAME"/>
+	<result property = "pSize" column = "P_SIZE"/>
+	<result property = "pGender" column = "P_GENDER"/>
+	<result property = "pPrice" column = "P_PRICE"/>
+	
+	</resultMap>
+	
+	<select id="sellProductAllSelect" resultMap = "productResultMap">
+	
+	SELECT
+		A.P_ID,
+		A.P_NAME,
+		A.P_SIZE,
+		A.P_GENDER,
+		A.P_PRICE,
+		A.PRODUCTABLE_STATUS
+	FROM BID_PRODUCT A
+	ORDER BY A.P_ID
+	
+	</select>
+
+
+	<insert id="insertProduct" parameterType="com.project.model.dto.BidProductDTO">
+		
+		INSERT
+			INTO BID_PRODUCT A
+		(
+			A.P_ID,
+			A.P_NAME,
+			A.P_SIZE,
+			A.P_GENDER,
+			A.P_PRICE
+		)			
+		VALUES
+		(
+			#{pId},
+			#{pName},
+			#{pSize},
+			#{pGender},
+			#{pPrice}
+		)
+		
+		
+	</insert>
+
+
+	<update id="updateProduct" parameterType="com.project.model.dto.BidProductDTO">
+		
+		UPDATE BID_PRODUCT A
+		SET
+		A.P_NAME = #{pName},
+		A.P_SIZE = #{pSize},
+		A.P_GENDER = #{pGender},
+		A.P_PRICE = #{pPrice}
+		WHERE P_ID = #{pId}
+		
+	</update>
+
+
+	<delete id="deleteProduct" parameterType="com.project.model.dto.BidProductDTO"> 
+		
+		DELETE
+		FROM BID_PRODUCT A
+		WHERE A.P_ID = #{pId}
+		
+	</delete>
+	
+
+
+
+
+
+
+
+</mapper>
