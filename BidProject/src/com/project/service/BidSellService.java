@@ -30,7 +30,7 @@ public class BidSellService {
 		List<BidProduct> productList = bidDAO.sellProductAllSelect(sqlSession);
 		
 		if(productList != null) {
-	         System.out.println(productList + "전체판매물품이조회되었습니다.");
+	         System.out.println("전체 판매 물품이 조회되었습니다.");
 	      }
 		
 		sqlSession.close();
