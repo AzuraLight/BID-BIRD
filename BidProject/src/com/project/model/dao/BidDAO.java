@@ -71,7 +71,7 @@ public class BidDAO {
 	}
 
 	public List<BidProduct> searchAll(SqlSession sqlSession) {
-		System.out.println(sqlSession);
+		
 		return sqlSession.selectList("BidMapper.searchAll");
 	}
 
