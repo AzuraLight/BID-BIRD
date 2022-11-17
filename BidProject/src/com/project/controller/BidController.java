@@ -119,8 +119,7 @@ int choice= 0;
 		System.out.println("1. 판매 물품 등록");
 		System.out.println("2. 판매 물품 수정");
 		System.out.println("3. 판매 물품 삭제");
-		System.out.println("⠀4. 판매 물품 확인");
-		System.out.println("8. 종료하기");
+		System.out.println("4. 판매 물품 확인");
 		System.out.println("9. 마이페이지로");
 		System.out.print("\n번호를 입력하세요 : ");
 
@@ -147,9 +146,6 @@ int choice= 0;
 		case 4:
 			bidSellController.sellProductAllSelect();//컨트롤러에 판매제품전체조회으로로이동
 			break;
-		case 8:
-			System.out.println("프로그램을 종료합니다");// 프로그램 종료
-			return;
 		case 9:
 			System.out.println("이전메뉴로 돌아갑니다."); mypage();
 		default:
@@ -276,7 +272,7 @@ int choice= 0;
 			System.out.println("-------------------------------------------");
 			System.out.println("1.회원 전체 조회");
 			System.out.println("2.개인 회원 조회");
-			System.out.println("2.회원 강제 탈퇴");
+			System.out.println("3.회원 강제 탈퇴");
 			System.out.println("9.이전 페이지로");
 			System.out.println("-------------------------------------------");
 			System.out.print("번호를 입력하세요 : ");
@@ -777,23 +773,20 @@ int choice= 0;
 
 		bidSellController.sellProductAllSelect();//판매중인제품전체조회메소드를 불러옴 
 		System.out.println("------------------------------------");
-		System.out.println("수정할 물품 id선택 : ");
-		String productId = sc.nextLine();
-
-		System.out.println("제품 아이디를 입력하세요 : ");
-		String pId = sc.nextLine();
+		System.out.println("수정하실 제품 아이디를 입력하세요 : ");
+		String pId = sc.next();
 		
 		System.out.println("제품명을 입력하세요 : ");
-		String pName = sc.nextLine();
+		String pName = sc.next();
 		
 		System.out.println("제품 사이즈를 입력하세요 : ");
-		String pSize = sc.nextLine().toUpperCase();
+		String pSize = sc.next().toUpperCase();
 		
 		System.out.println("제품 성별을 입력하세요 : ");
-		String pGender = sc.nextLine().toUpperCase();
+		String pGender = sc.next().toUpperCase();
 		
 		System.out.println("제품 가격을 입력하세요 : ");
-		String pPrice = sc.nextLine();
+		String pPrice = sc.next();
 		Map<String, String> parameter = new HashMap<>();
 		parameter.put("pId", pId);
 		parameter.put("pName", pName);
