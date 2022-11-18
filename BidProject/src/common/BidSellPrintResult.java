@@ -4,6 +4,14 @@ import java.util.List;
 
 import com.project.model.dto.BidProduct;
 
+/*
+ * <pre>
+ * Class : BidSellPrintResult
+ * Comment : 호출 받은 여러 메세지를 처리하기 위한 기능들을 모아놓은 클래스입니다.
+ * author : 김선중
+ */
+
+
 public class BidSellPrintResult {
 
 	

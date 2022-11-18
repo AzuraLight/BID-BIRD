@@ -201,6 +201,7 @@
 		WHERE A.P_NAME LIKE '%' || #{ name } || '%'
 	</update>
 	
+	<!-- 판매물품전체조회 by 선중 -->
 	<select id="sellProductAllSelect" resultMap = "productResultMap">
 	
 	SELECT
@@ -215,7 +216,7 @@
 	
 	</select>
 
-
+	<!-- 판매물품등록 by 선중 -->
 	<insert id="insertProduct" parameterType="com.project.model.dto.BidProduct">
 		
 		INSERT
@@ -239,7 +240,7 @@
 		
 	</insert>
 
-
+	<!-- 판매물품수정 by 선중 -->
 	<update id="updateProduct" parameterType="com.project.model.dto.BidProduct">
 		
 		UPDATE BID_PRODUCT A
@@ -252,7 +253,7 @@
 		
 	</update>
 
-
+	<!-- 판매물품삭제 by 선중 -->
 	<delete id="deleteProduct" parameterType="com.project.model.dto.BidProduct"> 
 		
 		DELETE

@@ -7,6 +7,14 @@ import java.util.Scanner;
 import com.project.controller.BidSellController;
 import com.project.model.dto.BidProductDTO;
 
+
+
+/*
+ * <pre>
+ * Class : BidSellMenu
+ * Comment : 본 메뉴 클래스는 사용자가 직접 대면하게 되는 ui의 기본 틀이 되는 부분으로 어플리케이션에서 호출 받은 메뉴를 작성하는 페이지입니다.
+ * author : 김선중
+ */
 public class BidSellMenu {
 
 	// 스캐너를 이용하여서 메뉴 번호를 입력 받을 것이고,
@@ -16,7 +24,12 @@ public class BidSellMenu {
 	private static BidSellController bidSellController = new BidSellController();
 
 	
-	//판매페이지 메인화면
+	/**
+	 * 
+	 * displayMainSellMenu() 메소드는 마이페이지에서 판매페이지로 넘어왔을때 첫 화면을 담당하는 부분이고
+	 * 해당 메소드는 컨트롤러에 있는  판매물품등록,수정,삭제,확인 기능을 호출합니다.
+	 * 
+     */
 	public void displayMainSellMenu() {
 
 		int choice;// 변수하나선언
