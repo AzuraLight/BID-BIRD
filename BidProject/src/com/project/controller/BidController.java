@@ -220,9 +220,9 @@ int choice= 0;
 		System.out.println("변경할 이메일를 입력해주세요: ");
 		String userEmail = sc.nextLine();
 		System.out.println("변경할 전화번호를 입력해주세요: ");
-		String userAddress = sc.nextLine();
-		System.out.println("변경할 주소를 입력해주세요: ");
 		String userPhone = sc.nextLine();
+		System.out.println("변경할 주소를 입력해주세요: ");
+		String userAddress = sc.nextLine();
 
 		Map<String, String> parameter = new HashMap<>();
 		parameter.put("userID", userID);
