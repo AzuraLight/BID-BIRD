@@ -113,10 +113,12 @@ public class BidController {
 			}
 		}
 	}
-
+	/**
+	 * sellProduct메소드는 마이페이지에서 판매페이지로 넘어왔을때 처음으로 보여지는 메인판메페이지 메소드입니다.
+	 */
 	private void sellProduct() {
 		
-int choice= 0;
+	int choice= 0;
 		
 		do {
 		System.out.println("================= 물품 판매 ========================");
@@ -847,7 +849,9 @@ int choice= 0;
 		return parameter;
 
 	}
-
+	/**
+	 * inputDeleteProduct메소드는 판매제품삭제 메소드입니다.
+	 */
 	private static Map<String, String> inputDeleteProduct() {
 		
 		Scanner sc= new Scanner(System.in);//스캐너 생성
@@ -863,7 +867,9 @@ int choice= 0;
 	}
 	
 	
-	//판매제품수정
+	/**
+	 * inputUpdateProduct메소드는 판매제품수정 메소드입니다.
+	 *
 	private static Map<String, String> inputUpdateProduct() {
 
 		bidSellController.sellProductAllSelect();//판매중인제품전체조회메소드를 불러옴 
@@ -894,7 +900,9 @@ int choice= 0;
 		
 		
 	}
-	//판매제품등록
+	/**
+	 * inputProduct메소드는 판매제품등록 메소드입니다.
+	 */
 	private static Map<String, String> inputProduct() {
 
 		System.out.println("제품 아이디를 입력하세요 : ");
