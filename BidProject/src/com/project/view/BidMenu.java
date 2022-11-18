@@ -7,14 +7,16 @@ import java.util.Scanner;
 
 
 import com.project.controller.BidController;
-
-
 /*
  * <pre>
  * Class : BidMenu
  * Comment : 본 메뉴 클래스는 사용자가 직접 대면하게 되는 ui의 기본 틀이 되는 부분으로 어플리케이션에서 호출 받은 메뉴를 작성하는 페이지입니다.
+ * History
+ * (이현도) BidMenu 처음 작성 & 메인메뉴 작성 & 로그인 메소드 작성
+ * (이지형) 가입을 위한 정보를 입력 받는 메소드 작성
  * author : 이현도
  */
+
 public class BidMenu {
 
 	//스캐너를 이용하여서 메뉴 번호를 입력 받을 것이고, 전역 필드에 static으로 작성으로써 다른 메소드에서도 사용 가능하게 선언해둡니다.
@@ -102,7 +104,7 @@ public class BidMenu {
 		return parameter;
 	}
 	
-	// 회원 가입을 위한 메소드 
+	/*새로운 회원의 정보 값을 받기 위한 메소드 */
 	public Map<String, String> insertInfo() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("아이디를 입력해주세요: ");
@@ -129,6 +131,7 @@ public class BidMenu {
 		System.out.println("전화번호를 입력해주세요: ");
 		String userPhone = sc.nextLine();
 
+		//입력받은 키값을 파라미터로 키값 저장. 
 		Map<String, String> parameter = new HashMap<>();
 
 		parameter.put("userID", userID);
@@ -140,6 +143,7 @@ public class BidMenu {
 		parameter.put("userAddress", userAddress);
 		parameter.put("userPhone", userPhone);
 
+		//파라미터 값 반환
 		return parameter;
 
 	}
