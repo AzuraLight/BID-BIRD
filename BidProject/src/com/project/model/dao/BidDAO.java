@@ -53,18 +53,20 @@ public class BidDAO {
 		return sqlSession.selectList("BidMapper.selectAllMember");
 
 	}
-
+	
+	/* DB에 입력받은 새로운 값들을 추가하기 위한 메소드 */
 	public int signUp(SqlSession sqlSession, MemberDTO member) {
 
 		return sqlSession.insert("BidMapper.signUp", member);
 	}
 	
-
+	/* DB에 입력받은 수정된 정보을 처리하기 위한 메소드 */
 	public int updateMember(SqlSession sqlSession, MemberDTO member) {
 		return sqlSession.update("BidMapper.updateMemebr", member);	
 
 	}
 	
+	/* DB에 회원 탈퇴를 처리하기 위한 메소드 */
 	public int deleteMemberMe(SqlSession sqlSession, String userID) {
 		return sqlSession.delete("BidMapper.deleteMemberMe", userID);
 
