@@ -167,9 +167,11 @@ public class BidService {
 		return result > 0 ? true : false;
 	}
 
+	/* 전체 상품을 조회하기 위한 메소드 */
 	public List<BidProduct> searchAll() {
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 상품 전체 조회용 메소드를 호출하여 결과를 리턴 받음
 		List<BidProduct> bidList = bidDAO.searchAll(sqlSession);
 
 		if (bidList != null) {
@@ -178,13 +180,16 @@ public class BidService {
 		}
 
 		sqlSession.close();
+		
+		//반환 받은 값을 리턴
 		return bidList;
 
 	}
-
+	/*  상품을 사이즈, 이름으로  조회하기 위한 메소드 */
 	public void searchByNameOrSize(Map<String, Object> criteria) {
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의 사이즈,이름으로 상품 조회용 메소드를 호출하여 출력
 		List<BidProduct> bidList = bidDAO.searchByNameOrSize(sqlSession, criteria);
 
 		if (bidList != null && bidList.size() > 0) {
@@ -198,10 +203,12 @@ public class BidService {
 		sqlSession.close();
 
 	}
+	/*  상품을 구매 하기 위한 메소드 */
 
 	public void productPurchase(Map<String, Object> changeInfo) {
 		SqlSession sqlSession = getSqlSession();
 
+		// DAO의  상품 구매용 메소드를 호출하여 출력
 		List<BidProduct> result = bidDAO.productPurchase(sqlSession, changeInfo);
 
 		if (result != null) {
@@ -215,18 +222,23 @@ public class BidService {
 		}
 		sqlSession.close();
 	}
-
+	/*  구매 했던 상품을 조회하기 위한 메소드 */
 	public void confirm() {
 		SqlSession sqlSession = getSqlSession();
+		
+		// DAO의 구매했던 상품 조회용 메소드를 호출하여 출력
 		List<BidProduct> bidList = bidDAO.confirm(sqlSession);
 		System.out.println(bidList + "조회 되었습니다");
 
 		sqlSession.close();
 
 	}
+	/*  구매 했던 상품을 취소하기 위한 메소드 */
 
 	public void cancel(Map<String, Object> inputCancel) {
 		SqlSession sqlSession = getSqlSession();
+		
+		// DAO의 구매했던 상품 취소용 메소드를 호출하여 출력
 		List<BidProduct> bidList = bidDAO.cancel(sqlSession, inputCancel);
 
 		List<BidProduct> result = bidDAO.productPurchase(sqlSession, inputCancel);
@@ -241,5 +253,6 @@ public class BidService {
 		}
 		sqlSession.close();
 	}
+
 
 }
