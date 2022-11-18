@@ -732,22 +732,20 @@ public class BidController {
 
 	private static Map<String, Object>inputSearchMap() {
 		System.out.println("검색할 조건을 입력하세요(name or size ) : ");
-		String condition = sc.nextLine().toLowerCase();
+		String condition = sc.next().toLowerCase();
 		
 		Map<String, Object> criteria = new HashMap<>();
 		
 		if("name".equals(condition)) {
 		System.out.println("검색할 상품명을 입력하세요 : ");
-		String nameValue = sc.nextLine();
+		String nameValue = sc.next();
 		
 		criteria.put("nameValue", nameValue);
 		
 		}else if("size".equals(condition)){ 
 		System.out.println("검색할 사이즈를 입력하세요");
-		char sizeValue = sc.nextLine().toUpperCase().charAt(0);
+		char sizeValue = sc.next().toUpperCase().charAt(0);
 		criteria.put("sizeValue", sizeValue);
-		
-		
 		
 		}
 		

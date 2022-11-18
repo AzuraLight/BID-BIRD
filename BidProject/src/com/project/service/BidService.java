@@ -101,7 +101,7 @@ public class BidService {
 
 		// DAO의 회원 삭제를 위한 메소드를 호출하여 결과를 리턴 받음
 		MemberDTO member = bidDAO.deleteMember(sqlSession, userID);
-
+		
 		sqlSession.close();
 
 		//반환 받은 값을 리턴
