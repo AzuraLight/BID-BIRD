@@ -107,7 +107,7 @@ public class BidController {
 			case 1: sellProduct(); break;
 			case 2: buyProduct(); break;
 			case 3: updateMember(updateInfo()); break;
-			case 4: deleteMemberMe(inputPWD()); break;
+			case 4: deleteMemberMe(inputPWD()); return;
 			default:
 				break;
 			}
@@ -236,7 +236,7 @@ public class BidController {
 		
 		//스캐너로 새로 수정된 값을 입력 받음
 		Scanner sc = new Scanner(System.in);
-		System.out.println("수정할 아이디를 입력하세요 : ");
+		System.out.println("아이디를 입력하세요 : ");
 		String userID = sc.nextLine();
 		System.out.println("변경할 이름를 입력해주세요:");
 		String userName = sc.nextLine();
