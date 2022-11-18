@@ -789,24 +789,6 @@ public class BidController {
 		return parameter;
 	}
 	
-	private static Map<String, String> inputMember() {
-		
-		for(int i = 0; i < 15; i++) {
-			System.out.println();
-		}
-		
-		System.out.print("아이디를 입력하세요. : ");
-		String userID = sc.next().toLowerCase();
-		
-		System.out.print("비밀번호를 입력하세요. : ");
-		String userPWD = sc.next().toLowerCase();
-		
-		Map<String, String> parameter = new HashMap<>();
-		parameter.put("userID", userID);
-		parameter.put("userPWD", userPWD);
-		
-		return parameter;
-	}
 	
 	// 회원 가입을 위한 메소드 
 	public Map<String, String> insertInfo() {
@@ -869,7 +851,7 @@ public class BidController {
 	
 	/**
 	 * inputUpdateProduct메소드는 판매제품수정 메소드입니다.
-	 *
+	 */
 	private static Map<String, String> inputUpdateProduct() {
 
 		bidSellController.sellProductAllSelect();//판매중인제품전체조회메소드를 불러옴 
