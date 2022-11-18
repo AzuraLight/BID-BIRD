@@ -70,26 +70,27 @@ public class BidDAO {
 
 	}
 
+	/* DB를 읽어들여 상품 전체를 조회하는 기능을 처리하기 위한 메소드 */
 	public List<BidProduct> searchAll(SqlSession sqlSession) {
-		
+		System.out.println(sqlSession);
 		return sqlSession.selectList("BidMapper.searchAll");
 	}
-
+	/* DB를 읽어들여 상품의 사이즈별 혹은 이름으로 조회하는 기능을 처리하기 위한 메소드 */
 	public List<BidProduct> searchByNameOrSize(SqlSession sqlSession, Map<String, Object> criteria) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("BidMapper.searchByNameOrSize", criteria);
 	}
-
+	/* DB를 읽어들여 상품 구매 기능을 처리하기 위한 메소드 */
 	public List<BidProduct> productPurchase(SqlSession sqlSession, Map<String, Object> changeInfo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("BidMapper.productPurchase", changeInfo);
 	}
-
+	/* DB를 읽어들여 구매했던 상품을 조회하는 기능을 처리하기 위한 메소드 */
 	public List<BidProduct> confirm(SqlSession sqlSession) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("BidMapper.confirm");
 	}
-
+	/* DB를 읽어들여 구매했던 상품을 취소 하는 기능을 처리하기 위한 메소드 */
 	public List<BidProduct> cancel(SqlSession sqlSession, Map<String, Object> inputCancel) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("BidMapper.cancel",inputCancel);
