@@ -97,24 +97,24 @@ public class BidDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("BidMapper.cancel",inputCancel);
 	}
-
+	/* DB를 읽어들여 판매물품전체조회를 처리하기 위한 메소드 */
 	public List<BidProduct> sellProductAllSelect(SqlSession sqlSession) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("BidMapper.sellProductAllSelect");
 	}
-
+	/* DB를 읽어들여 판매물품등록을 처리하기 위한 메소드 */
 	public int insertProduct(SqlSession sqlSession, BidProduct product) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.insert("BidMapper.insertProduct", product);
 	}
-
+	/* DB를 읽어들여 판매물품수정을 처리하기 위한 메소드 */
 	public int updateProduct(SqlSession sqlSession, BidProduct product) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.update("BidMapper.updateProduct", product);
 	}
-
+	/* DB를 읽어들여 판매물품삭제을 처리하기 위한 메소드 */
 	public int deleteProduct(SqlSession sqlSession, String pId) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.update("BidMapper.deleteProduct", pId);
 	}
 
