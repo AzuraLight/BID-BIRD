@@ -502,6 +502,9 @@ int choice= 0;
 		return parameter;
 	}
 	
+	/**
+	 * buyProduct 메소드는 1.물품 조회 2.물품 구매 3.구매 물품 확인 4.구매 물품 취소 9.이전 메뉴로 가기를 통해 상품을 구매 할 수 있도록 메소드를 호출하는 역할을 합니다. 
+	 */
 	public void buyProduct() {
 
 		int no = 0;
@@ -517,6 +520,7 @@ int choice= 0;
 			System.out.println();
 
 		System.out.print("메뉴 선택 : ");
+		// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.		
 		try {
 	         no = sc.nextInt();
 	      } catch (InputMismatchException e) {
@@ -531,11 +535,16 @@ int choice= 0;
 			case 2: purchase(); break;
 			case 3: purchaseConfirm(); break;
 			case 4: cancelPurchase(); break;
-			case 9: System.out.println("이전메뉴로 돌아갑니다."); mypage();
+			case 9: System.out.println("이전메뉴로 돌아갑니다."); 
+			mypage();
 			}
 		} while (true);
 
 	}
+	
+	/**
+	 * cancelPurchase 메소드는 구매 했던 상품을 취소하게 하는 매소드로 1.구매 했던 목록 조회 2.구매 취소9. 이전 메뉴 기능 합니다
+	 */
 	
 	private static void cancelPurchase() {
 		int no =0;
@@ -546,6 +555,7 @@ int choice= 0;
 		System.out.println("2.구매 취소 ");
 		System.out.println("9. 이전 메뉴로");
 		System.out.print("메뉴 번호를 입력하세요 : ");
+		// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.		
 		try {
 	         no = sc.nextInt();
 	      } catch (InputMismatchException e) {
@@ -562,6 +572,10 @@ int choice= 0;
 	}
 	
 
+	/**
+	 * inputCancel 메소드는 cancel 매소드의 인자 값으로 들어가는데 상품의 구매가능여부 이름을 입력받아 그 값을 db의 데이터와 비교하기 위한 매소드입니다
+	 */
+
 	private static Map<String, Object> inputCancel() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("취소할 상품 이름을 입력하세요 :");
@@ -576,15 +590,22 @@ int choice= 0;
 		return inputCancel;
 	}
 
+	/**
+	 * purchaseConfirm 메소드는 1.구매 했던 목록 조회 9. 이전 메뉴를 출력하는 기능을 하고 있습니다
+	 */
+
+
 	private static void purchaseConfirm() {
 		int no =0;
 		BidService bidService = new BidService();
+		
 		do {
 		System.out.println("=========== 구매 물품 확인 ============");
 		System.out.println("1.구매 했던 목록 조회 ");
 		
 		System.out.println("9. 이전 메뉴로");
 		System.out.print("메뉴 번호를 입력하세요 : ");
+		// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.		
 		try {
 	         no = sc.nextInt();
 	      } catch (InputMismatchException e) {
@@ -601,6 +622,10 @@ int choice= 0;
 		}while(true);
 	}
 
+	
+	/**
+	 * purchase 메소드는 상품을 구매하기 위한 매소드 이고 1.전체 목록 조회 2.구매 하기 9. 이전 메뉴 라는 기능 하고 있습니다
+	 */
 	private static void purchase() {
 		int no = 0;
 		BidService bidService = new BidService();
@@ -610,6 +635,7 @@ int choice= 0;
 		System.out.println("2.구매 하기 ");
 		System.out.println("9. 이전 메뉴로");
 		System.out.print("메뉴 번호를 입력하세요 : ");
+		// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.		
 		try {
 	         no = sc.nextInt();
 	      } catch (InputMismatchException e) {
@@ -629,6 +655,10 @@ int choice= 0;
 		
 	
 
+/**
+	 * productSearch 메소드는 상품을 검색 하기 위한 매소드 이고 1. 전체 조회 2. 이름 또는 사이즈로 검색 9. 이전 메뉴로 라는 기능을 하고 있습니다
+	 */
+
 	private static void productSearch() {
 		int no = 0;
 		BidService bidService = new BidService();
@@ -638,6 +668,7 @@ int choice= 0;
 		System.out.println("2. 이름 또는 사이즈로 검색");
 		System.out.println("9. 이전 메뉴로");
 		System.out.print("메뉴 번호를 입력하세요 : ");
+		// 숫자 대신 다른 글자를 입력 할 수 있으므로 try catch 블럭으로 간단하게 예외처리를 해둡니다.		
 		try {
 	         no = sc.nextInt();
 	      } catch (InputMismatchException e) {
@@ -654,6 +685,10 @@ int choice= 0;
 		}while(true);
 		
 	}
+
+	/**
+	 * inputSearchMap 메소드는 searchByNameOrSize 매소드의 인자 값으로 들어가는데 상품의 이름이나 사이즈를 입력받아 그 값을 db의 데이터와 비교하기 위한 매소드입니다
+	 */
 
 	private static Map<String, Object>inputSearchMap() {
 		System.out.println("검색할 조건을 입력하세요(name or size ) : ");
@@ -679,6 +714,10 @@ int choice= 0;
 		return criteria;
 	}
 
+		/**
+	 * inputChangeInfo 메소드는 상품의 구매가능 여부를 변경하는  매소드입니다
+	 */
+
 	private static Map<String, Object> inputChangeInfo() {
 		System.out.print("구매할 메뉴 이름을 입력하세요 :");
 		String name = sc.nextLine();
@@ -690,6 +729,24 @@ int choice= 0;
 		changeInfo.put("name", name);
 		changeInfo.put("productableStatus", productableStatus);
 		return changeInfo;
+	}
+	private static Map<String, String> inputMember() {
+		
+		for(int i = 0; i < 15; i++) {
+			System.out.println();
+		}
+		
+		System.out.print("아이디를 입력하세요. : ");
+		String userID = sc.next().toLowerCase();
+		
+		System.out.print("비밀번호를 입력하세요. : ");
+		String userPWD = sc.next().toLowerCase();
+		
+		Map<String, String> parameter = new HashMap<>();
+		parameter.put("userID", userID);
+		parameter.put("userPWD", userPWD);
+		
+		return parameter;
 	}
 	
 	private static Map<String, String> inputMember() {
