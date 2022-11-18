@@ -42,9 +42,9 @@ public class BidDAO {
 	}
 
 	/* DB를 읽어들여 회원 삭제 기능을 처리하기 위한 메소드 */
-	public MemberDTO deleteMember(SqlSession sqlSession, String userID) {
+	public int deleteMember(SqlSession sqlSession, String userID) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("BidMapper.deleteMember", userID);
+		return sqlSession.delete("BidMapper.deleteMember", userID);
 	}
 
 	/* DB를 읽어들여 회원 전체를 조회하는 기능을 처리하기 위한 메소드 */

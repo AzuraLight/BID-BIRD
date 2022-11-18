@@ -95,17 +95,24 @@ public class BidService {
 	}
 
 	/* 회원 삭제를 위한 메소드 */
-	public MemberDTO deleteMember(String userID) {
+	public boolean deleteMember(String userID) {
 		
 		SqlSession sqlSession = getSqlSession();
 
-		// DAO의 회원 삭제를 위한 메소드를 호출하여 결과를 리턴 받음
-		MemberDTO member = bidDAO.deleteMember(sqlSession, userID);
+		//DAO의 회원 정보 삭제 메소드를 호출하여 결과를 리턴 받음
+		int result = bidDAO.deleteMember(sqlSession, userID);
 		
+		//리턴 받은 결과 값 판단 후 트랜젝션 처리
+		if (result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+
 		sqlSession.close();
 
-		//반환 받은 값을 리턴
-		return member;
+		//트렌젝션 처리한 값 반환
+		return result > 0 ? true : false;
 	}
 
 	/* 전체 회원을 조회하기 위한 메소드 */

@@ -393,8 +393,13 @@ public class BidController {
 	private void deleteMember(Map<String, String> parameter) {
 
 		String userID = parameter.get("userID");
-
-		MemberDTO member = bidService.deleteMember(userID);
+		
+		//값을 서비스를 넘겨주고 수행된 결과 값을 사용자에게 표시
+		if (bidService.deleteMember(userID)) {
+			printResult.printSuccessMessage("delete");
+		} else {
+			printResult.printErrorMessage("delete");
+		}
 
 	}
 

@@ -59,6 +59,7 @@
 			FROM BID_USER
 			WHERE USER_ID = #{userID}
 	</delete>
+	
 
 	<select id= "selectAllMember" parameterType="com.project.model.dto.MemberDTO" resultMap = "loginResultMap">
 
