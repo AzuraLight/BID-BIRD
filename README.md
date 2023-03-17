@@ -5,16 +5,16 @@
 
 ------------
 
-[개발언어]
-1. Backend
-Java 11
+# [개발언어]
+## 1. Backend
+### Java 11
 
-2. DB
-Oracle DB 11g Express Edition 
+## 2. DB
+### Oracle DB 11g Express Edition 
 
-3. Framework
-Mybatis
+## 3. Framework
+### Mybatis
 
-4. Tool
-Eclipse
+## 4. Tool
+### Eclipse
 
