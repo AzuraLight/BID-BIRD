@@ -4,16 +4,18 @@
 ### 로그인시 리세일 숍과 같이 판매, 구매 기능을 사용 가능하도록 구현하려고 하였습니다.
 
 
-## 개발언어
-### Backend
-#### Java 11
+```
+## + 개발언어
+##  + Backend
+###   + Java 11
 
-### DB
-#### Oracle DB 11g Express Edition 
+## + DB
+###  + Oracle DB 11g Express Edition 
 
-## Framework
-#### Mybatis
+## + Framework
+### + Mybatis
 
 
-## Tool
-#### Eclipse
+## + Tool
+### + Eclipse
+```
