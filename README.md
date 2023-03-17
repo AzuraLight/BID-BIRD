@@ -1,4 +1,6 @@
 # Bid & Bird
+
+![2696474](https://user-images.githubusercontent.com/113497486/225845559-dacd231f-c992-42bb-a2b4-29629990461a.jpg)
 ------------
 
 리세일 숍을 표방하는 미니 프로젝트
