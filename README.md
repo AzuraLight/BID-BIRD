@@ -17,14 +17,14 @@
 
 # [개발언어]
 ## 1. Backend
-### Java 11
+### - Java 11
 
 ## 2. DB
-### Oracle DB 11g Express Edition 
+### - Oracle DB 11g Express Edition 
 
 ## 3. Framework
-### Mybatis
+### - Mybatis
 
 ## 4. Tool
-### Eclipse
+### - Eclipse
 
